@@ -1,0 +1,16 @@
+<package>
+  <description brief="vrmagic_multi_driver">
+    A node to provide access to VRmagic multi-sensor cameras
+  </description>
+  <author>Philipp Schneider, Stefan Kohlbrecher</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/vrmagic_multi_driver</url>
+  <depend package="roscpp"/>
+  <depend package="image_transport"/>
+  <depend package="sensor_msgs"/>
+  <depend package="stereo_msgs"/>
+  <depend package="driver_base" />
+</package>
+
+
