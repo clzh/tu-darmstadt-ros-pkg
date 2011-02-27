@@ -1,0 +1,9 @@
+<stack>
+  <description brief="vrmagic_camera">vrmagic_camera</description>
+  <author>Maintained by Stefan Kohlbrecher</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/vrmagic_camera</url>
+  <depend stack="ros" />
+
+</stack>
