@@ -1,0 +1,9 @@
+<stack>
+  <description brief="hector_common">hector_common</description>
+  <author>Maintained by Johannes Meyer</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_common</url>
+  <depend stack="ros" />
+
+</stack>

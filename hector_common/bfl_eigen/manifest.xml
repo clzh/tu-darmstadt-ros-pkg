@@ -1,0 +1,23 @@
+<package>
+  <description brief="The Bayesian Filtering Library (latest) with Eigen matrix class">
+
+    This package contains a recent version of the Bayesian Filtering
+    Library (BFL), distributed by the Orocos Project.
+
+  </description>
+  <author>Klaas Gadeyne, Wim Meeussen, Tinne Delaet and many others. See web page for a full contributor list. ROS package with Eigen matrix class maintained by Johannes Meyer.</author>
+  <license>LGPL</license>
+  <url>http://www.orocos.org/bfl-eigen</url>
+  <export>
+    <cpp cflags="-I${prefix}/orocos-bfl-0.8.0/src" lflags="-Wl,-rpath,${prefix}/lib  -L${prefix}/lib -lorocos-bfl"/>
+    <doxymaker external="http://orocos.org/bfl" />
+  </export>
+
+  <depend package="eigen" />
+
+  <rosdep name="cppunit"/>
+  <platform os="ubuntu" version="9.04"/>
+  <platform os="ubuntu" version="9.10"/>
+  <platform os="ubuntu" version="10.04"/>
+</package>
+
