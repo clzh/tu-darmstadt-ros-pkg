@@ -29,7 +29,7 @@ rosbuild_init()
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}")
+set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/install")
 set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(MATRIX_LIB eigen)

@@ -6,5 +6,5 @@ install: all
 
 clean:
 	cd build && ${MAKE} clean
-	rm -Rf bin lib include
+	rm -Rf install
 	rm -Rf build 
