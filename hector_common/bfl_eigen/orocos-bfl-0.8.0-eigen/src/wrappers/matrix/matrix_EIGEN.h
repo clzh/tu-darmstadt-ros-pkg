@@ -1,4 +1,4 @@
-#include "wrappers/config.h"
+#include "../config.h"
 #ifdef __MATRIXWRAPPER_EIGEN__
 
 #ifndef __MATRIX_EIGEN__

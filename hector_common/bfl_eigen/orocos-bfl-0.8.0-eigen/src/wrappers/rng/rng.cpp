@@ -16,7 +16,7 @@
 //
 #include "rng.h"
 
-#include <wrappers/config.h>
+#include "../config.h"
 #ifdef __RNGWRAPPER_BOOST__  // BOOST RANDOM LIBRARY
 // THE BOOST RANDOM NUMBER GENERATION LIBRARY
 

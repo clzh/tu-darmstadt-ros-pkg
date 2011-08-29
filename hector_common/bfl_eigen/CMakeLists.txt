@@ -41,6 +41,6 @@ if (NOT eigen_PACKAGE_PATH)
 endif ()
 set(EIGEN_INCLUDE "${eigen_PACKAKE_PATH}/include")
 
-include_directories(${PROJECT_BINARY_DIR}/src/src)
+include_directories(${PROJECT_BINARY_DIR}/src/src/wrappers/matrix)
 
 add_subdirectory(orocos-bfl-0.8.0-eigen src)

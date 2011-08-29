@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 //
 
-#include "wrappers/config.h"
+#include "../config.h"
 #ifdef __MATRIXWRAPPER_BOOST__
 
 #include "vector_BOOST.h"
