@@ -1,0 +1,21 @@
+<package>
+  <description brief="hector_marker_drawing">
+
+     hector_marker_drawing
+
+  </description>
+  <author>stefan</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_marker_drawing</url>
+  <depend package="visualization_msgs"/>
+  <depend package="roscpp"/>
+  <depend package="eigen"/>
+  
+  <export>
+  <cpp cflags="-I${prefix}/include" />
+  </export>
+
+</package>
+
+
