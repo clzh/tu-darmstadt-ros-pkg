@@ -154,6 +154,13 @@ public:
     markerArray.markers.push_back(marker);
   }
 
+  virtual void addMarkers(visualization_msgs::MarkerArray markers) {
+    for(visualization_msgs::MarkerArray::_markers_type::iterator it = markers.markers.begin(); it != markers.markers.end(); ++it) {
+      visualization_msgs::Marker &marker = *it;
+      addMarker(marker);
+    }
+  }
+
   virtual void sendAndResetData()
   {
     markerArrayPublisher_.publish(markerArray);
