@@ -39,8 +39,9 @@ rosbuild_find_ros_package(eigen)
 if (NOT eigen_PACKAGE_PATH)
   message(FATAL_ERROR "BFL requires the Eigen matrix library to be in the ROS_PACKAGE_PATH!")
 endif ()
-set(EIGEN_INCLUDE "${eigen_PACKAKE_PATH}/include")
+set(EIGEN_INCLUDE "${eigen_PACKAGE_PATH}/include")
+message(STATUS "Found Eigen in ${EIGEN_INCLUDE}")
 
-include_directories(${PROJECT_BINARY_DIR}/src/src/wrappers/matrix)
+set(SOURCE_DIR "orocos-bfl-0.8.0")
+add_subdirectory(build/${SOURCE_DIR} ${SOURCE_DIR})
 
-add_subdirectory(orocos-bfl-0.8.0-eigen src)
