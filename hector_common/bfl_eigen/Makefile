@@ -19,5 +19,5 @@ install: bfl_eigen
 clean: full_clean
 
 full_clean:
-	-rm patched rospack_nosubdirs
+	rm -rf install patched
 
