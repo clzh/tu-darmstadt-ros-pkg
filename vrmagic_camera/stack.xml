@@ -3,7 +3,7 @@
   <author>Maintained by Stefan Kohlbrecher</author>
   <license>BSD</license>  
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/vrmagic_camera</url>
+  <url>http://www.ros.org/wiki/vrmagic_camera</url>
   <depend stack="ros" />
 
 </stack>

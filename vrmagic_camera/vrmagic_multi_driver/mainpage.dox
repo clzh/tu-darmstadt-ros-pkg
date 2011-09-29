@@ -2,7 +2,7 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b vrmagic_multi_driver is ... 
+\b vrmagic_multi_driver is a driver of vrmagic multisensor cameras.
 
 <!-- 
 Provide an overview of your package.
