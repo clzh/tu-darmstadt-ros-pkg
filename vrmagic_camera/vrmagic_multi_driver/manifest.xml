@@ -1,6 +1,6 @@
 <package>
   <description brief="vrmagic_multi_driver">
-    A node to provide access to VRmagic multi-sensor cameras
+    A node to provide access to VRmagic multi-sensor cameras. This driver is not feature complete and was only tested with a stereo configuration.
   </description>
   <author>Philipp Schneider, Stefan Kohlbrecher</author>
   <license>BSD</license>
