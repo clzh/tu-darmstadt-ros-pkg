@@ -59,7 +59,7 @@ class PropertyCache
 {
 public:
     float exposureTime;
-    int gain;
+    int gainLeft, gainRight;
     float fps;
     VRmBOOL useLEDs;
 };
@@ -84,15 +84,32 @@ void VRMagicStereoNode::propertyUpdate(vrmagic_stereo::CamParamsConfig &config, 
 
     }
 
-    if(props->gain != config.gain)
+    if(props->gainLeft != config.gainLeft)
     {
 	boost::lock_guard<boost::mutex> lock(camAccess);
 
-	int newVal = config.gain;
+	VRmPropId sensor = VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_1;
+	VRmUsbCamSetPropertyValueE(device, VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_E, &sensor);
+
+	int newVal = config.gainLeft;
 	if(!VRmUsbCamSetPropertyValueI(device, VRM_PROPID_CAM_GAIN_MONOCHROME_I, &newVal))
 	    std::cerr << "VRmUsbCamSetPropertyValueI(VRM_PROPID_CAM_GAIN_MONOCHROME_I) failed." << std::endl;
 	else
-	    props->gain = newVal;
+	    props->gainLeft = newVal;
+    }
+
+    if(props->gainRight != config.gainRight)
+    {
+	boost::lock_guard<boost::mutex> lock(camAccess);
+
+	VRmPropId sensor = VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_3;
+	VRmUsbCamSetPropertyValueE(device, VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_E, &sensor);
+
+	int newVal = config.gainRight;
+	if(!VRmUsbCamSetPropertyValueI(device, VRM_PROPID_CAM_GAIN_MONOCHROME_I, &newVal))
+	    std::cerr << "VRmUsbCamSetPropertyValueI(VRM_PROPID_CAM_GAIN_MONOCHROME_I) failed." << std::endl;
+	else
+	    props->gainRight = newVal;
     }
 
     if(props->useLEDs != config.useLEDs)
@@ -287,7 +304,14 @@ void VRMagicStereoNode::initProperties()
     if(!VRmUsbCamGetPropertyValueB(device, VRM_PROPID_DEVICE_STATUS_LED_B, &props->useLEDs))
 	std::cerr << "VRmUsbCamGetPropertyValueB(DEVICE_STATUS_LED_B) failed." << std::endl;
 
-    if(!VRmUsbCamGetPropertyValueI(device, VRM_PROPID_CAM_GAIN_MONOCHROME_I, &props->gain))
+    VRmPropId sensor = VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_1;
+    VRmUsbCamSetPropertyValueE(device, VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_E, &sensor);
+    if(!VRmUsbCamGetPropertyValueI(device, VRM_PROPID_CAM_GAIN_MONOCHROME_I, &props->gainLeft))
+	std::cerr << "VRmUsbCamGetPropertyValueI(VRM_PROPID_CAM_GAIN_MONOCHROME_I) failed." << std::endl;
+
+    sensor = VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_3;
+    VRmUsbCamSetPropertyValueE(device, VRM_PROPID_GRAB_SENSOR_PROPS_SELECT_E, &sensor);
+    if(!VRmUsbCamGetPropertyValueI(device, VRM_PROPID_CAM_GAIN_MONOCHROME_I, &props->gainRight))
 	std::cerr << "VRmUsbCamGetPropertyValueI(VRM_PROPID_CAM_GAIN_MONOCHROME_I) failed." << std::endl;
 
     props->fps = 0.5;
