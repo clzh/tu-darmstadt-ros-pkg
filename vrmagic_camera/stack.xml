@@ -1,5 +1,5 @@
 <stack>
-  <description brief="vrmagic_camera">vrmagic_camera</description>
+  <description brief="vrmagic_camera">vrmagic_camera is a stack containing a driver for vrmagic multisensor cameras. It is far from feature complete and works only on 32 bit linux systems with usbfs support, as the manufacturer only supports these.</description>
   <author>Maintained by Stefan Kohlbrecher</author>
   <license>BSD</license>  
   <review status="unreviewed" notes=""/>
