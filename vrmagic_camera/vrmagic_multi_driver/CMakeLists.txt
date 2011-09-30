@@ -32,7 +32,7 @@ gencfg()
 rosbuild_add_executable( vrmstnode src/vrmstnode.cpp src/formatindicator.cpp
 	src/sourceformatlist.cpp )
 
-target_link_libraries( vrmstnode libvrmusbcam)
+#target_link_libraries( vrmstnode libvrmusbcam)
 
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
