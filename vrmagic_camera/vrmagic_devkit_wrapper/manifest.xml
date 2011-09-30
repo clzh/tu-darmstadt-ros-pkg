@@ -7,6 +7,10 @@
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/vrmagic_devkit_wrapper</url>
   <depend package="roscpp"/>
+  
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/lib  -L${prefix}/lib -lvrmusbcam"/>
+  </export>
 </package>
 
 
