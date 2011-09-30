@@ -64,7 +64,7 @@ public:
     VRmBOOL useLEDs;
 };
 
-void VRMagicStereoNode::propertyUpdate(vrmagic_stereo::CamParamsConfig &config, uint32_t level)
+void VRMagicStereoNode::propertyUpdate(vrmagic_multi_driver::CamParamsConfig &config, uint32_t level)
 {
     if(props->exposureTime != config.exposureTime)
     {

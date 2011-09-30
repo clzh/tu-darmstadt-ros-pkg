@@ -35,7 +35,7 @@
 #ifndef FORMATINDICATOR_H
 #define FORMATINDICATOR_H
 
-#include <vrmusbcam2.h>
+#include <vrmagic_devkit_wrapper/vrmusbcam2.h>
 
 class FormatIndicator
 {

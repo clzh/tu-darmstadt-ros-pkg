@@ -21,9 +21,9 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
-add_library( libvrmusbcam SHARED IMPORTED )
-set_target_properties( libvrmusbcam PROPERTIES IMPORTED_LOCATION 
-	${PROJECT_SOURCE_DIR}/vrlib/libvrmusbcam.so )
+#add_library( libvrmusbcam SHARED IMPORTED )
+#set_target_properties( libvrmusbcam PROPERTIES IMPORTED_LOCATION
+#	${PROJECT_SOURCE_DIR}/vrlib/libvrmusbcam.so )
 
 rosbuild_find_ros_package(dynamic_reconfigure)
 include(${dynamic_reconfigure_PACKAGE_PATH}/cmake/cfgbuild.cmake)

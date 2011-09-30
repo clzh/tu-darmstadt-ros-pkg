@@ -40,11 +40,11 @@
 #include <sensor_msgs/SetCameraInfo.h>
 
 #include <dynamic_reconfigure/server.h>
-#include <vrmagic_stereo/CamParamsConfig.h>
+#include <vrmagic_multi_driver/CamParamsConfig.h>
 
 #include <boost/thread.hpp>
 
-#include <vrmusbcam2.h>
+#include <vrmagic_devkit_wrapper/vrmusbcam2.h>
 
 class PropertyCache;
 
@@ -59,7 +59,7 @@ private:
 	sensor_msgs::CameraInfo leftCalib, rightCalib;
         ros::ServiceServer leftCalibUpdate, rightCalibUpdate;
 	// it would be better to use CameraInfoManager, if saving to cameraeprom is not required
-	dynamic_reconfigure::Server<vrmagic_stereo::CamParamsConfig> dConfServer;
+  dynamic_reconfigure::Server<vrmagic_multi_driver::CamParamsConfig> dConfServer;
         ros::Rate fpsLimit;
         VRmUsbCamDevice device;
 	PropertyCache *props;
@@ -68,7 +68,7 @@ private:
         sensor_msgs::Image imgRight;
 	const std::string frame_id;
 	
-	void propertyUpdate(vrmagic_stereo::CamParamsConfig &config, uint32_t level);
+  void propertyUpdate(vrmagic_multi_driver::CamParamsConfig &config, uint32_t level);
 
         bool runUpdateLeft(sensor_msgs::SetCameraInfo::Request &req,
             sensor_msgs::SetCameraInfo::Response &res);

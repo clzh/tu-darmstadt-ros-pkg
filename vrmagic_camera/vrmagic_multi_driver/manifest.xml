@@ -11,6 +11,7 @@
   <depend package="sensor_msgs"/>
   <depend package="stereo_msgs"/>
   <depend package="driver_base" />
+  <depend package="vrmagic_devkit_wrapper"/>
 </package>
 
 

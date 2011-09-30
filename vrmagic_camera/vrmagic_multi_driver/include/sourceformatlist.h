@@ -36,7 +36,7 @@
 #define SOURCEFORMATLIST_H
 
 #include <vector>
-#include <vrmusbcam2.h>
+#include <vrmagic_devkit_wrapper/vrmusbcam2.h>
 
 class SourceFormatList : public std::vector<VRmImageFormat>
 {
