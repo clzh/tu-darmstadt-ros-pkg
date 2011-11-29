@@ -7,7 +7,7 @@
   </description>
   <author>Klaas Gadeyne, Wim Meeussen, Tinne Delaet and many others. See web page for a full contributor list. ROS package with Eigen matrix class maintained by Johannes Meyer.</author>
   <license>LGPL</license>
-  <url>http://www.orocos.org/bfl-eigen</url>
+  <url>http://www.orocos.org/bfl</url>
   <export>
     <cpp cflags="-I${prefix}/install/include" lflags="-Wl,-rpath,${prefix}/install/lib  -L${prefix}/install/lib -lorocos-bfl"/>
     <doxymaker external="http://orocos.org/bfl" />
