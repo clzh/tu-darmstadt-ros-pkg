@@ -154,9 +154,9 @@ public:
 
     tempMarker.pose.orientation.w = 1.0;
 
-    tempMarker.scale.x = sqrt(eigValues[0]);
+    tempMarker.scale.x = sqrt(eigValues[2]);
     tempMarker.scale.y = sqrt(eigValues[1]);
-    tempMarker.scale.z = sqrt(eigValues[2]);
+    tempMarker.scale.z = sqrt(eigValues[0]);
 
     tempMarker.id = idCounter++;
     markerArray.markers.push_back(tempMarker);
