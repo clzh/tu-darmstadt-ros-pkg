@@ -124,13 +124,42 @@ public:
 
     tempMarker.id = idCounter++;
     markerArray.markers.push_back(tempMarker);
+  }
 
-    //drawLine(Eigen::Vector3f(0,0,0), Eigen::Vector3f(lengthMajor ,0,0));
-    //drawLine(Eigen::Vector3f(0,0,0), Eigen::Vector3f(0,lengthMinor,0));
+  virtual void drawCovariance(const Eigen::Vector3f& mean, const Eigen::Matrix3f& covMatrix)
+  {
 
-    //glScalef(lengthMajor, lengthMinor, 0);
-    //glCallList(dlCircle);
-    //this->popCS();
+    tempMarker.type = visualization_msgs::Marker::SPHERE;
+
+    tempMarker.color.r = 0.0;
+    tempMarker.color.a = 0.5;
+
+    tempMarker.pose.position.x = mean[0];
+    tempMarker.pose.position.y = mean[1];
+    tempMarker.pose.position.z = mean[2];
+
+    Eigen::SelfAdjointEigenSolver<Eigen::Matrix3f> eig(covMatrix);
+
+    const Eigen::Vector3f& eigValues (eig.eigenvalues());
+    const Eigen::Matrix3f& eigVectors (eig.eigenvectors());
+
+    Eigen::Quaternionf quaternion (eigVectors);
+
+    /*
+    tempMarker.pose.orientation.w = quaternion.w();
+    tempMarker.pose.orientation.x = quaternion.x();
+    tempMarker.pose.orientation.y = quaternion.y();
+    tempMarker.pose.orientation.z = quaternion.z();
+    */
+
+    tempMarker.pose.orientation.w = 1.0;
+
+    tempMarker.scale.x = sqrt(eigValues[0]);
+    tempMarker.scale.y = sqrt(eigValues[1]);
+    tempMarker.scale.z = sqrt(eigValues[2]);
+
+    tempMarker.id = idCounter++;
+    markerArray.markers.push_back(tempMarker);
   }
 
   virtual void setScale(double scale)
