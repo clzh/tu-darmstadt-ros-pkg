@@ -31,10 +31,11 @@
 
 #include "ros/ros.h"
 
+#include <Eigen/Geometry>
 #include <Eigen/Dense>
 
-#include <visualization_msgs/MarkerArray.h>
 
+#include <visualization_msgs/MarkerArray.h>
 
 class HectorDrawings : public DrawInterface
 {
@@ -99,6 +100,7 @@ public:
 
   virtual void drawCovariance(const Eigen::Vector2f& mean, const Eigen::Matrix2f& covMatrix)
   {
+
     tempMarker.pose.position.x = mean[0];
     tempMarker.pose.position.y = mean[1];
 
@@ -128,7 +130,6 @@ public:
 
   virtual void drawCovariance(const Eigen::Vector3f& mean, const Eigen::Matrix3f& covMatrix)
   {
-
     tempMarker.type = visualization_msgs::Marker::SPHERE;
 
     tempMarker.color.r = 0.0;
@@ -143,16 +144,28 @@ public:
     const Eigen::Vector3f& eigValues (eig.eigenvalues());
     const Eigen::Matrix3f& eigVectors (eig.eigenvectors());
 
-    Eigen::Quaternionf quaternion (eigVectors);
 
-    /*
+    Eigen::Matrix3f eigVectorsFlipped;
+    eigVectorsFlipped.col(0) = eigVectors.col(2);
+    eigVectorsFlipped.col(1) = eigVectors.col(1);
+    eigVectorsFlipped.col(2) = eigVectors.col(0);
+
+    if (eigVectorsFlipped.determinant() < 0){
+      eigVectorsFlipped.col(2) = -eigVectorsFlipped.col(2);
+    }
+
+    Eigen::Quaternionf quaternion (eigVectorsFlipped);
+
+    //std::cout << "\neigVec:\n" << eigVectors << "\n";
+    //std::cout << "\neigVecFlipped:\n" << eigVectorsFlipped << "\n";
+
+    //std::cout << "\now:" << quaternion.w() << " x:" << quaternion.x() << " y:" << quaternion.y() << " z:" << quaternion.z() << "\n";
+
+
     tempMarker.pose.orientation.w = quaternion.w();
     tempMarker.pose.orientation.x = quaternion.x();
     tempMarker.pose.orientation.y = quaternion.y();
     tempMarker.pose.orientation.z = quaternion.z();
-    */
-
-    tempMarker.pose.orientation.w = 1.0;
 
     tempMarker.scale.x = sqrt(eigValues[2]);
     tempMarker.scale.y = sqrt(eigValues[1]);
@@ -160,6 +173,8 @@ public:
 
     tempMarker.id = idCounter++;
     markerArray.markers.push_back(tempMarker);
+
+
   }
 
   virtual void setScale(double scale)
