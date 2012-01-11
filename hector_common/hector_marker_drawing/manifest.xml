@@ -1,10 +1,10 @@
 <package>
   <description brief="hector_marker_drawing">
 
-     hector_marker_drawing
+     hector_marker_drawing provides convenience functions for easier publishing of visualization markers
 
   </description>
-  <author>stefan</author>
+  <author>Stefan Kohlbrecher</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/hector_marker_drawing</url>
