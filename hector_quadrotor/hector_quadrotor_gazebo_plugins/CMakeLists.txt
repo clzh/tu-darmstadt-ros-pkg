@@ -12,28 +12,21 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 rosbuild_init()
 
 #set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+#set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
-rosbuild_add_boost_directories()
+#rosbuild_add_boost_directories()
 
-rosbuild_add_library(diffdrive_plugin_6w src/diffdrive_plugin_6w.cpp)
-rosbuild_link_boost(diffdrive_plugin_6w thread)
-
-rosbuild_add_library(hector_gazebo_ros_imu src/gazebo_ros_imu.cpp)
-rosbuild_link_boost(hector_gazebo_ros_imu thread)
-rosbuild_add_library(hector_gazebo_ros_magnetic src/gazebo_ros_magnetic.cpp)
-rosbuild_link_boost(hector_gazebo_ros_magnetic thread)
-rosbuild_add_library(hector_gazebo_ros_gps src/gazebo_ros_gps.cpp)
-rosbuild_link_boost(hector_gazebo_ros_gps thread)
-rosbuild_add_library(hector_gazebo_ros_sonar src/gazebo_ros_sonar.cpp)
-rosbuild_link_boost(hector_gazebo_ros_sonar thread)
+rosbuild_add_library(hector_gazebo_quadrotor_simple_controller src/quadrotor_simple_controller.cpp)
+#rosbuild_link_boost(hector_gazebo_quadrotor_simple_controller thread)
+rosbuild_add_library(hector_gazebo_ros_baro src/gazebo_ros_baro.cpp)
+#rosbuild_link_boost(hector_gazebo_ros_baro thread)
 
 #uncomment if you have defined messages
 #rosbuild_genmsg()
 #uncomment if you have defined services
-rosbuild_gensrv()
+#rosbuild_gensrv()
 
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
@@ -42,3 +35,4 @@ rosbuild_gensrv()
 #rosbuild_link_boost(${PROJECT_NAME} thread)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
+

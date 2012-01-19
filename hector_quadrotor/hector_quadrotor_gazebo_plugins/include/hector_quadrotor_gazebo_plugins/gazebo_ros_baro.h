@@ -1,5 +1,5 @@
 //=================================================================================================
-// Copyright (c) 2011, Johannes Meyer, TU Darmstadt
+// Copyright (c) 2012, Johannes Meyer, TU Darmstadt
 // All rights reserved.
 
 // Redistribution and use in source and binary forms, with or without
@@ -26,4 +26,67 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //=================================================================================================
 
+#ifndef HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
+#define HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
 
+#include <gazebo/Controller.hh>
+#include <gazebo/Entity.hh>
+#include <gazebo/Model.hh>
+#include <gazebo/Body.hh>
+#include <gazebo/Param.hh>
+#include <gazebo/Time.hh>
+
+#include <ros/callback_queue.h>
+#include <ros/ros.h>
+
+#include <mav_msgs/Height.h>
+
+#include <hector_gazebo_plugins/sensor_model.h>
+
+namespace gazebo
+{
+
+class GazeboRosBaro : public Controller
+{
+public:
+  GazeboRosBaro(Entity *parent);
+  virtual ~GazeboRosBaro();
+
+protected:
+  virtual void LoadChild(XMLConfigNode *node);
+  virtual void InitChild();
+  virtual void UpdateChild();
+  virtual void FiniChild();
+
+private:
+  Model *parent_;
+  Body *body_;
+
+  ros::NodeHandle* node_handle_;
+  ros::CallbackQueue callback_queue_;
+  ros::Publisher publisher_;
+
+  // void CallbackQueueThread();
+  // boost::mutex lock_;
+  // boost::thread callback_queue_thread_;
+
+  mav_msgs::Height height_;
+
+  ParamT<std::string> *body_name_param_;
+  std::string body_name_;
+  ParamT<std::string> *namespace_param_;
+  std::string namespace_;
+  ParamT<std::string> *topic_param_;
+  std::string topic_;
+
+  ParamT<double> *elevation_param_;
+  double elevation_;
+  ParamT<double> *qnh_param_;
+  double qnh_;
+
+  SensorModel sensor_model_;
+};
+
+} // namespace gazebo
+
+#endif // HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
