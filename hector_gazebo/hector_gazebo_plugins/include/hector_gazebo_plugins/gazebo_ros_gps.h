@@ -26,8 +26,8 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //=================================================================================================
 
-#ifndef HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
-#define HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
+#ifndef HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_GPS_H
+#define HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_GPS_H
 
 #include <gazebo/Controller.hh>
 #include <gazebo/Entity.hh>
@@ -37,17 +37,18 @@
 #include <gazebo/Time.hh>
 
 #include <ros/ros.h>
-#include <mav_msgs/Height.h>
+#include <sensor_msgs/NavSatFix.h>
+#include <geometry_msgs/Vector3Stamped.h>
 #include <hector_gazebo_plugins/sensor_model.h>
 
 namespace gazebo
 {
 
-class GazeboRosBaro : public Controller
+class GazeboRosGps : public Controller
 {
 public:
-  GazeboRosBaro(Entity *parent);
-  virtual ~GazeboRosBaro();
+  GazeboRosGps(Entity *parent);
+  virtual ~GazeboRosGps();
 
 protected:
   virtual void LoadChild(XMLConfigNode *node);
@@ -60,21 +61,29 @@ private:
   Body *body_;
 
   ros::NodeHandle* node_handle_;
-  ros::Publisher publisher_;
+  ros::Publisher fix_publisher_;
+  ros::Publisher velocity_publisher_;
 
-  mav_msgs::Height height_;
+  sensor_msgs::NavSatFix fix_;
+  geometry_msgs::Vector3Stamped velocity_;
 
   ParamT<std::string> *body_name_;
   ParamT<std::string> *namespace_;
   ParamT<std::string> *frame_id_;
-  ParamT<std::string> *topic_;
+  ParamT<std::string> *fix_topic_;
+  ParamT<std::string> *velocity_topic_;
 
-  ParamT<double> *elevation_;
-  ParamT<double> *qnh_;
+  ParamT<double> *reference_latitude_;
+  ParamT<double> *reference_longitude_;
+  ParamT<double> *reference_heading_;
+  ParamT<double> *reference_altitude_;
+  ParamT<sensor_msgs::NavSatStatus::_status_type> *status_;
+  ParamT<sensor_msgs::NavSatStatus::_service_type> *service_;
 
-  SensorModel sensor_model_;
+  SensorModel3 position_error_model_;
+  SensorModel3 velocity_error_model_;
 };
 
 } // namespace gazebo
 
-#endif // HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
+#endif // HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_GPS_H

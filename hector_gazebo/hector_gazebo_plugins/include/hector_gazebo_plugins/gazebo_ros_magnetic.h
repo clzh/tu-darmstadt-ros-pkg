@@ -26,8 +26,8 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //=================================================================================================
 
-#ifndef HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
-#define HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
+#ifndef HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_MAGNETIC_H
+#define HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_MAGNETIC_H
 
 #include <gazebo/Controller.hh>
 #include <gazebo/Entity.hh>
@@ -37,17 +37,17 @@
 #include <gazebo/Time.hh>
 
 #include <ros/ros.h>
-#include <mav_msgs/Height.h>
+#include <geometry_msgs/Vector3Stamped.h>
 #include <hector_gazebo_plugins/sensor_model.h>
 
 namespace gazebo
 {
 
-class GazeboRosBaro : public Controller
+class GazeboRosMagnetic : public Controller
 {
 public:
-  GazeboRosBaro(Entity *parent);
-  virtual ~GazeboRosBaro();
+  GazeboRosMagnetic(Entity *parent);
+  virtual ~GazeboRosMagnetic();
 
 protected:
   virtual void LoadChild(XMLConfigNode *node);
@@ -62,19 +62,21 @@ private:
   ros::NodeHandle* node_handle_;
   ros::Publisher publisher_;
 
-  mav_msgs::Height height_;
+  geometry_msgs::Vector3Stamped magnetic_field_;
+  gazebo::Vector3 magnetic_field_world_;
 
   ParamT<std::string> *body_name_;
   ParamT<std::string> *namespace_;
-  ParamT<std::string> *frame_id_;
   ParamT<std::string> *topic_;
 
-  ParamT<double> *elevation_;
-  ParamT<double> *qnh_;
+  ParamT<double> *magnitude_;
+  ParamT<double> *reference_heading_;
+  ParamT<double> *declination_;
+  ParamT<double> *inclination_;
 
-  SensorModel sensor_model_;
+  SensorModel3 sensor_model_;
 };
 
 } // namespace gazebo
 
-#endif // HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_BARO_H
+#endif // HECTOR_GAZEBO_PLUGINS_GAZEBO_ROS_MAGNETIC_H
