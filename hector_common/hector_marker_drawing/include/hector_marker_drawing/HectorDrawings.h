@@ -44,6 +44,7 @@ public:
   HectorDrawings()
   {
     idCounter = 0;
+    maxId = 0;
 
     ros::NodeHandle nh_;
 
@@ -207,8 +208,10 @@ public:
 
   virtual void sendAndResetData()
   {
+    allMarkers.markers.insert(allMarkers.markers.end(), markerArray.markers.begin(), markerArray.markers.end());
     markerArrayPublisher_.publish(markerArray);
     markerArray.markers.clear();
+    if (idCounter > maxId) maxId = idCounter;
     idCounter = 0;
   }
 
@@ -217,12 +220,23 @@ public:
     tempMarker.header.stamp = time;
   }
 
+  void reset()
+  {
+    for(visualization_msgs::MarkerArray::_markers_type::iterator it = allMarkers.markers.begin(); it != allMarkers.markers.end(); ++it)
+    {
+      it->action = visualization_msgs::Marker::DELETE;
+    }
+    markerArrayPublisher_.publish(allMarkers);
+    allMarkers.markers.clear();
+  }
 
   ros::Publisher markerPublisher_;
   ros::Publisher markerArrayPublisher_;
 
   visualization_msgs::Marker tempMarker;
   visualization_msgs::MarkerArray markerArray;
+  visualization_msgs::MarkerArray allMarkers;
 
   int idCounter;
+  int maxId;
 };
