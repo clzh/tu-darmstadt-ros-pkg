@@ -11,9 +11,9 @@ SRCS := $(wildcard src/* src/*/* src/*/*/*)
 
 all: $(SVN_DIR) $(SVN_PATCH) patched
 
-bfl_eigen: all
+bfl: all
 
-install: bfl_eigen
+install: bfl
 	cd build && ${MAKE} install
 
 clean: full_clean
