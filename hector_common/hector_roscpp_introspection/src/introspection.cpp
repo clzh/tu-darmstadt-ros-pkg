@@ -26,11 +26,9 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //=================================================================================================
 
-#include <introspection/introspection.h>
 #include <introspection/field.h>
 #include <introspection/type.h>
-
-#include <ros/ros.h>
+#include <introspection/introspection.h>
 
 #include <dlfcn.h>
 #include <boost/filesystem.hpp>

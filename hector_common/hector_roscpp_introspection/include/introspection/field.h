@@ -31,6 +31,7 @@
 
 #include <introspection/forwards.h>
 #include <introspection/type.h>
+#include <introspection/field.h>
 
 namespace roscpp_introspection {
 

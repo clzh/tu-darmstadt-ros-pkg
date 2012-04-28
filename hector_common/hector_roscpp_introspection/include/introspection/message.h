@@ -30,6 +30,7 @@
 #define ROSCPP_INTROSPECTION_MESSAGE_H
 
 #include <introspection/forwards.h>
+#include <introspection/field.h>
 
 #include <std_msgs/Header.h>
 #include <ros/time.h>

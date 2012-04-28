@@ -31,7 +31,6 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
-#include <ros/forwards.h>
 #include <map>
 #include <vector>
 
@@ -64,9 +63,12 @@ namespace roscpp_introspection {
   struct CompareTypeInfo { bool operator()(const std::type_info *t1, const std::type_info *t2) { return (*t1).before(*t2); } };
   typedef std::map<const std::type_info *,MessageWPtr,CompareTypeInfo> M_TypeInfo_Message;
 
-  using ros::V_string;
-  using ros::VoidPtr;
-  using ros::VoidConstPtr;
+  typedef boost::shared_ptr<void> VoidPtr;
+  typedef boost::weak_ptr<void> VoidWPtr;
+  typedef boost::shared_ptr<void const> VoidConstPtr;
+  typedef boost::weak_ptr<void const> VoidConstWPtr;
+
+  typedef std::vector<std::string> V_string;
 
 } // namespace roscpp_introspection
 

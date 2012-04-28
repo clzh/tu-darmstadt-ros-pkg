@@ -11,9 +11,14 @@
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/hector_roscpp_introspection</url>
 
-  <depend package="roscpp"/>
+  <depend package="rosconsole"/>
+  <depend package="rostime"/>
   <depend package="roscpp_traits"/>
+  <depend package="roscpp_serialization"/>
   <depend package="rosbuild"/>
+  <depend package="std_msgs"/>
+
+  <depend package="geometry_msgs"/>
 
   <export>
     <rosbuild cmake_directory="${prefix}/cmake"/>
