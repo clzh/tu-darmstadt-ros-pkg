@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<package>
+  <description brief="biorob_gazebo">
+
+     biorob_gazebo provides urdf and launch files for simulating the BioRob arm in gazebo.
+
+  </description>
+  <author>Stefan Kohlbrecher</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/biorob_gazebo</url>
+  <depend package="biorob_description"/>
+  
+  <depend package="gazebo" />
+  <depend package="gazebo_tools" />
+  
+  <export>
+    <gazebo gazebo_media_path="${prefix}" />
+  </export>
+
+</package>
+
+
