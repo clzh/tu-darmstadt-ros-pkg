@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 
-<robot name="biorob_x4"
+<robot name="biorob_x6"
     xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
     xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
     xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
 
-  <include filename="$(find biorob_description)/urdf/biorob_x4/biorob_x4.urdf.xacro" />
+  <include filename="$(find biorob_description)/urdf/biorob_x6/biorob_x6.urdf.xacro" />
  
   <gazebo>
     <controller:gazebo_ros_controller_manager name="gazebo_ros_controller_manager" plugin="libgazebo_ros_controller_manager.so">
