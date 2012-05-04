@@ -138,7 +138,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
       </collision>
-      <xacro:default_inertial mass="0.1"/>
+      <xacro:default_inertial mass="0.01"/>
     </link>
     <gazebo reference="biorob_link5">
       <selfCollide>true</selfCollide>
@@ -163,7 +163,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
       </collision>
-      <xacro:default_inertial mass="0.1"/>
+      <xacro:default_inertial mass="0.01"/>
     </link>
     <gazebo reference="biorob_link5">
       <selfCollide>true</selfCollide>
@@ -188,7 +188,7 @@
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
       </collision>
-      <xacro:default_inertial mass="0.1"/>
+      <xacro:default_inertial mass="0.01"/>
     </link>
     <gazebo reference="biorob_link6">
       <selfCollide>true</selfCollide>
