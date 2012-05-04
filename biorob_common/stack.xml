@@ -9,5 +9,6 @@
   <depend stack="ros" />
   <depend stack="xacro" /> <!-- xacro -->
   <depend stack="robot_model" />
+  <depend stack="pr2_simulator" /> <!-- For libgazebo_ros_controller_manager -->
 
 </stack>
