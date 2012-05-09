@@ -13,11 +13,7 @@
     <doxymaker external="http://orocos.org/bfl" />
   </export>
 
-  <depend package="eigen" />
+  <rosdep name="eigen" />
 
-  <rosdep name="cppunit"/>
-  <platform os="ubuntu" version="9.04"/>
-  <platform os="ubuntu" version="9.10"/>
-  <platform os="ubuntu" version="10.04"/>
 </package>
 
