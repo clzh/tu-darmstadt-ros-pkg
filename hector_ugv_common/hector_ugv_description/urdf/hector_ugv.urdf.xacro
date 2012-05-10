@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+	 xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+	 xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	 xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	 name="hector">
+
+  <include filename="$(find monstertruck_urdf)/hector/materials.urdf.xacro" />
+  <include filename="$(find monstertruck_urdf)/hector/hector_wheel.urdf.xacro" />
+
+  <include filename="$(find monstertruck_urdf)/hector/hector_ugv_common_dimensions.urdf.xacro" />
+
+  <include filename="$(find monstertruck_urdf)/hector/$(env ROBOT)_dimensions.urdf.xacro" />
+
+  <include filename="$(find monstertruck_urdf)/hector/hector_ugv_base.urdf.xacro" />
+  <hector_ugv_base wheel_joint_type="fixed" />
+  
+  <include filename="$(find monstertruck_urdf)/hector/hector_ugv_openni_frames.urdf.xacro" />
+  
+  <include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" />
+  <xacro:hokuyo_utm30lx name="laser1" parent="laser1_link" ros_topic="laser1/scan" update_rate="40" ray_count="1081" min_angle="135" max_angle="-135">
+    <origin xyz="${laser1_center_x_offset} 0 ${laser1_plane_height}" rpy="0 0 0"/>
+  </xacro:hokuyo_utm30lx>
+
+</robot>
+

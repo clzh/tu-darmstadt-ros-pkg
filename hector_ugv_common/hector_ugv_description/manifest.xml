@@ -1,0 +1,16 @@
+<package>
+  <description brief="hector_ugv_description">
+
+     hector_ugv_description
+
+  </description>
+  <author>Stefan Kohlbrecher</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_ugv_description</url>
+  <depend package="hector_sensors_description"/>
+  <depend package="hector_xacro_tools"/>
+
+</package>
+
+
