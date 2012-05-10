@@ -1,0 +1,15 @@
+<package>
+  <description brief="hector_ugv_gazebo">
+
+     hector_ugv_gazebo
+
+  </description>
+  <author>Stefan Kohlbrecher</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_ugv_gazebo</url>
+  <depend package="hector_ugv_urdf"/>
+
+</package>
+
+

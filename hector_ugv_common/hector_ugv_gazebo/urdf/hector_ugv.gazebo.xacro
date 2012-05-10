@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+	 xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+	 xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	 xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	 name="hector">
+
+  <include filename="$(find hector_ugv_description)/urdf/materials.urdf.xacro" />
+  <include filename="$(find hector_ugv_description)/urdf/hector_wheel.urdf.xacro" />
+
+  <include filename="$(find hector_ugv_description)/urdf/hector_ugv_common_dimensions.urdf.xacro" />
+
+  <include filename="$(find hector_ugv_description)/urdf/$(env ROBOT)_dimensions.urdf.xacro" />
+
+  <include filename="$(find hector_ugv_description)/urdf/hector_ugv_base.urdf.xacro" />
+  <hector_ugv_base wheel_joint_type="continuous" />
+  
+  <include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" />
+  <xacro:hokuyo_utm30lx name="laser1" parent="laser1_link" ros_topic="laser1/scan" update_rate="40" ray_count="1081" min_angle="135" max_angle="-135">
+    <origin xyz="${laser1_center_x_offset} 0 ${laser1_plane_height}" rpy="0 0 0"/>
+  </xacro:hokuyo_utm30lx>
+  
+  <xacro:hokuyo_utm30lx name="laser0" parent="base_link" ros_topic="laser0/scan" update_rate="10" ray_count="700" min_angle="135" max_angle="-135">
+    <origin xyz="-0.18 0.0 0.173" rpy="0 ${-M_PI*0.5} 0" />
+  </xacro:hokuyo_utm30lx>
+  
+  <include filename="$(find hector_ugv_gazebo)/urdf/hector_ugv_base_controllers.gazebo.xacro" />
+  <hector_ugv_base_controllers/>
+  
+  <include filename="$(find hector_ugv_description)/urdf/hector_ugv_openni_frames.urdf.xacro" />
+  
+  <gazebo reference="openni_depth_frame">
+    <sensor:camera name="kinect_camera">
+      <imageFormat>R8G8B8</imageFormat>
+      <imageSize>320 240</imageSize>
+      <hfov>60</hfov>
+      <nearClip>0.05</nearClip>
+      <farClip>3</farClip>
+      <updateRate>10</updateRate>
+      <baseline>0.1</baseline>
+      <controller:gazebo_ros_openni_kinect name="kinect_camera_controller" plugin="libgazebo_ros_openni_kinect.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20</updateRate>
+        <imageTopicName>camera/rgb/image_color</imageTopicName>
+        <pointCloudTopicName>camera/depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>camera/camera_info</cameraInfoTopicName>
+        <frameName>openni_depth_optical_frame</frameName>
+        <distortion_k1>0.0</distortion_k1>
+        <distortion_k2>0.0</distortion_k2>
+        <distortion_k3>0.0</distortion_k3>
+        <distortion_t1>0.0</distortion_t1>
+        <distortion_t2>0.0</distortion_t2>
+      </controller:gazebo_ros_openni_kinect>
+    </sensor:camera>
+  </gazebo>
+  
+  <gazebo reference="infrared_frame">
+      <sensor:camera name="thermal_camera_sensor">
+        <imageSize>160 120</imageSize>
+        <imageFormat>R8G8B8</imageFormat>
+        <hfov>90</hfov>
+        <nearClip>0.01</nearClip>
+        <farClip>100</farClip>
+        <updateRate>10</updateRate>
+        <controller:gazebo_ros_thermal_camera name="thermal_camera_controller" plugin="libgazebo_ros_thermal_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>10</updateRate>
+          <imageTopicName>/thermal/image</imageTopicName>
+          <cameraInfoTopicName>/thermal/camera_info</cameraInfoTopicName>
+          <frameName>infrared_optical_frame</frameName>
+          <interface:camera name="thermal_camera_iface" />
+        </controller:gazebo_ros_thermal_camera>
+      </sensor:camera>
+    </gazebo>
+  
+</robot>
+
