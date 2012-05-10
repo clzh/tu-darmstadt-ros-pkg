@@ -1,0 +1,9 @@
+<stack>
+  <description brief="hector_ugv_common">hector_ugv_common</description>
+  <author>Maintained by Stefan Kohlbrecher</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_ugv_common</url>
+  <depend stack="ros" />
+
+</stack>

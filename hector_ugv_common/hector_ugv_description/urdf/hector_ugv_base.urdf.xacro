@@ -56,14 +56,14 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://monstertruck_urdf/meshes/hector_common_base.dae"/>
+        <mesh filename="package://hector_ugv_description/meshes/hector_common_base.dae"/>
       </geometry>
     </visual>
 
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-          <mesh filename="package://monstertruck_urdf/meshes/hector_common_base.stl"/>
+          <mesh filename="package://hector_ugv_description/meshes/hector_common_base.stl"/>
       </geometry>
     </collision>
   </link>
@@ -81,7 +81,7 @@
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
           <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
           <geometry>
-           <mesh filename="package://monstertruck_urdf/meshes/$(env ROBOT)_top_box$(optenv TEST_SELF_FILTER).dae"/>
+           <mesh filename="package://hector_ugv_description/meshes/$(env ROBOT)_top_box$(optenv TEST_SELF_FILTER).dae"/>
             <!--<box size="0.001 0.01 0.01" />-->
           </geometry>
     </visual>
