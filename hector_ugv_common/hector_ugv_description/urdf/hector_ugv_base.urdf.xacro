@@ -82,16 +82,16 @@
           <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
           <geometry>
            <mesh filename="package://hector_ugv_description/meshes/$(env ROBOT)_top_box$(optenv TEST_SELF_FILTER).dae"/>
-            <!--<box size="0.001 0.01 0.01" />-->
+           
           </geometry>
     </visual>
 
     <collision>
       <origin xyz="${top_box_pos_x} ${top_box_pos_y} ${top_box_pos_z}" rpy="0 0 0" />
       <geometry>
-          <!--<mesh filename="package://monstertruck_urdf/meshes/$(env ROBOT)_top_box.stl"/>-->
+          
           <box size="${top_box_size_x} ${top_box_size_y} ${top_box_size_z}" />
-          <!--<box size="0.001 0.01 0.01" />-->
+          
       </geometry>
     </collision>
   </link>
@@ -383,7 +383,7 @@
     </collision>
   </link>-->
   
-   <xacro:thermaleye_camera_model name="infrared" parent="mounting_link"> 
+<!--   <xacro:thermaleye_camera_model name="infrared" parent="mounting_link"> 
      <origin xyz="${infrared_x_position} ${infrared_y_position} ${infrared_z_position}" rpy="0 0 0" />
    </xacro:thermaleye_camera_model>
   
@@ -391,7 +391,7 @@
      <origin xyz="${kinect_x_position} 0 ${kinect_z_position}" rpy="0 0 0" />
    </xacro:kinect_camera_model>
 
-   <include filename="$(find monstertruck_urdf)/hector/$(env ROBOT)_addons.urdf.xacro" />
+   <include filename="$(find monstertruck_urdf)/hector/$(env ROBOT)_addons.urdf.xacro" />-->
   
   <hector_wheel parent="base_link" prefix="Front" suffix="left" reflect_x="1" reflect_y="1" wheel_joint_type="${wheel_joint_type}" />
   <hector_wheel parent="base_link" prefix="Front" suffix="right" reflect_x="1" reflect_y="-1" wheel_joint_type="${wheel_joint_type}" />
