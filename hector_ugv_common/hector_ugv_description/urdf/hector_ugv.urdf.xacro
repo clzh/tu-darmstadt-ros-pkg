@@ -16,12 +16,12 @@
   <include filename="$(find hector_ugv_description)/urdf/hector_ugv_base.urdf.xacro" />
   <hector_ugv_base wheel_joint_type="fixed" />
   
-  <include filename="$(find hector_ugv_description)/urdf/hector_ugv_openni_frames.urdf.xacro" />
+<!--  <include filename="$(find hector_ugv_description)/urdf/hector_ugv_openni_frames.urdf.xacro" />
   
   <include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" />
   <xacro:hokuyo_utm30lx name="laser1" parent="laser1_link" ros_topic="laser1/scan" update_rate="40" ray_count="1081" min_angle="135" max_angle="-135">
     <origin xyz="${laser1_center_x_offset} 0 ${laser1_plane_height}" rpy="0 0 0"/>
-  </xacro:hokuyo_utm30lx>
+  </xacro:hokuyo_utm30lx>-->
 
 </robot>
 
