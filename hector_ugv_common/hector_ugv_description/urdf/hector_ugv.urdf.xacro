@@ -11,7 +11,7 @@
 
   <include filename="$(find hector_ugv_description)/urdf/hector_ugv_common_dimensions.urdf.xacro" />
 
-  <include filename="$(find hector_ugv_description)/urdf/$(env ROBOT)_dimensions.urdf.xacro" />
+  <include filename="$(find hector_ugv_description)/urdf/hector1_dimensions.urdf.xacro" />
 
   <include filename="$(find hector_ugv_description)/urdf/hector_ugv_base.urdf.xacro" />
   <hector_ugv_base wheel_joint_type="fixed" />
