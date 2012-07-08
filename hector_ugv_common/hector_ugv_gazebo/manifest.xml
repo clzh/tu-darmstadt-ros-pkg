@@ -8,7 +8,7 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/hector_ugv_gazebo</url>
-  <depend package="hector_ugv_urdf"/>
+  <depend package="hector_ugv_description"/>
 
 </package>
 
