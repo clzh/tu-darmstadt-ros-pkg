@@ -94,7 +94,7 @@ GazeboQuadrotorAerodynamics::GazeboQuadrotorAerodynamics(Entity *parent)
   param_namespace_ = new ParamT<std::string>("paramNamespace", "~/quadrotor_aerodynamics", false);
   body_name_ = new ParamT<std::string>("bodyName", "", true);
   control_rate_ = new ParamT<Time>("controlRate", 100.0, false);
-  voltage_topic_ = new ParamT<std::string>("voltageTopicName", "motor_voltage", false);
+  voltage_topic_ = new ParamT<std::string>("voltageTopicName", "motor_pwm", false);
   wind_topic_ = new ParamT<std::string>("windTopicName", "wind", false);
   wrench_topic_ = new ParamT<std::string>("wrenchTopic", "wrench_out", false);
   status_topic_ = new ParamT<std::string>("statusTopic", "motor_status", false);
@@ -149,7 +149,7 @@ void GazeboQuadrotorAerodynamics::LoadChild(XMLConfigNode *node)
   // set control timer/delay parameters
   control_period_ = (**control_rate_ > 0) ? (1.0 / **control_rate_) : 0.0;
   control_delay_ = **control_delay_param_;
-  control_tolerance_ = Time((this->updatePeriod > 0 ? this->updatePeriod.Double() : World::Instance()->GetPhysicsEngine()->GetStepTime().Double()) / 2);
+  control_tolerance_ = Time((control_period_> 0 ? control_period_.Double() : World::Instance()->GetPhysicsEngine()->GetStepTime().Double()) / 2);
 
   // check update rate against world physics update rate
   // should be equal or higher to guarantee the wrench applied is not "diluted"
@@ -246,6 +246,7 @@ void GazeboQuadrotorAerodynamics::InitChild()
 void GazeboQuadrotorAerodynamics::CommandCallback(const hector_uav_msgs::MotorPWMConstPtr& command)
 {
   boost::mutex::scoped_lock lock(command_mutex_);
+  motor_status_.on = true;
   new_motor_voltages_.push_back(command);
   command_condition_.notify_all();
 }
@@ -278,20 +279,21 @@ void GazeboQuadrotorAerodynamics::UpdateChild()
       if (new_time == Time() || (new_time >= current_time - control_delay_ - control_tolerance_ && new_time <= current_time - control_delay_ + control_tolerance_)) {
         motor_voltage_ = new_motor_voltage;
         new_motor_voltages_.pop_front();
-        last_control_time_ = current_time;
+        last_control_time_ = current_time - control_delay_;
         // std::cout << "Using motor command valid at " << new_time << " for simulation step at " << current_time << " (dt = " << (current_time - new_time) << ")" << std::endl;
         break;
       } else if (new_time < current_time - control_delay_ - control_tolerance_) {
-        ROS_WARN("[quadrotor_aerodynamics] command received was too old: %f s", (new_time  - current_time).Double());
+        ROS_DEBUG("[quadrotor_aerodynamics] command received was too old: %f s", (new_time  - current_time).Double());
         new_motor_voltages_.pop_front();
         continue;
       }
     }
 
-    if (new_motor_voltages_.empty() && motor_status_.on &&  control_period_ > 0 && current_time > last_control_time_ + control_period_) {
-      // std::cout << "Waiting for command... ";
-      if (command_condition_.timed_wait(lock, ros::WallDuration(0.1).toBoost())) continue;
+    if (new_motor_voltages_.empty() && motor_status_.on &&  control_period_ > 0 && current_time > last_control_time_ + control_period_ + control_tolerance_) {
+      ROS_WARN("[quadrotor_aerodynamics] waiting for command...");
+      if (command_condition_.timed_wait(lock, ros::Duration(100.0 * control_period_).toBoost())) continue;
       ROS_ERROR("[quadrotor_aerodynamics] command timed out.");
+      motor_status_.on = false;
     }
 
     break;
@@ -307,13 +309,11 @@ void GazeboQuadrotorAerodynamics::UpdateChild()
   propulsion_model_->u[4] = -rate.y;
   propulsion_model_->u[5] = -rate.z;
   if (motor_voltage_ && motor_voltage_->pwm.size() >= 4) {
-    motor_status_.on = motor_voltage_->pwm[0] > 0 || motor_voltage_->pwm[1] > 0 || motor_voltage_->pwm[2] > 0 || motor_voltage_->pwm[3] > 0 ? 1 : 0;
     propulsion_model_->u[6] = motor_voltage_->pwm[0] * 14.8 / 255.0;
     propulsion_model_->u[7] = motor_voltage_->pwm[1] * 14.8 / 255.0;
     propulsion_model_->u[8] = motor_voltage_->pwm[2] * 14.8 / 255.0;
     propulsion_model_->u[9] = motor_voltage_->pwm[3] * 14.8 / 255.0;
   } else {
-    motor_status_.on = 0;
     propulsion_model_->u[6] = 0.0;
     propulsion_model_->u[7] = 0.0;
     propulsion_model_->u[8] = 0.0;
