@@ -6,7 +6,7 @@
     xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
     
     <!-- Included URDF Files -->
-    <include filename="$(find biorob_description)/urdf/biorob_x4/biorob_v3_x4_base.urdf.xacro" />
+    <include filename="$(find biorob_description)/urdf/biorob_v3_x4/biorob_v3_x4_base.urdf.xacro" />
     <link name="base"> 
       <inertial>
     	<mass value="10" />
@@ -18,7 +18,7 @@
     
       </link>
 
-    <biorob_x4_arm parent="base" >
+    <biorob_v3_x4_arm parent="base" >
         <origin xyz="0 0 0" rpy="0 0 0"/>
-    </biorob_x4_arm>
+    </biorob_v3_x4_arm>
 </robot>

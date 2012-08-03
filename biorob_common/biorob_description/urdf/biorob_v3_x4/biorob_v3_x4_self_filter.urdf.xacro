@@ -18,7 +18,7 @@
     
       </link>
 
-    <biorob_x4_arm parent="base" >
+    <biorob_v3_x4_arm parent="base" >
         <origin xyz="0 0 0" rpy="0 0 0"/>
-    </biorob_x4_arm>
+    </biorob_v3_x4_arm>
 </robot>

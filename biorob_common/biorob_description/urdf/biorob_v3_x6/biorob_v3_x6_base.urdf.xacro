@@ -23,7 +23,7 @@
     </inertial>
   </xacro:macro>
   
-  <macro name="biorob_x4_arm" params="parent *origin">
+  <macro name="biorob_v3_x6_arm" params="parent *origin">
     <link name="biorob_base_link">
       <visual>
         <geometry>
