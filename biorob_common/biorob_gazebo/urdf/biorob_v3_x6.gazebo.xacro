@@ -5,7 +5,7 @@
     xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
     xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
 
-  <include filename="$(find biorob_description)/urdf/biorob_x6/biorob_x6.urdf.xacro" />
+  <include filename="$(find biorob_description)/urdf/biorob_x6/biorob_v3_x6.urdf.xacro" />
  
   <gazebo>
     <controller:gazebo_ros_controller_manager name="gazebo_ros_controller_manager" plugin="libgazebo_ros_controller_manager.so">

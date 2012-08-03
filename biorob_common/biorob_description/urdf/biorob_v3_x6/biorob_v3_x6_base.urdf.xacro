@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
-<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" name="biorob_x4">
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       name="biorob_v3_x6">
+       
   <xacro:property name="base_height" value=".009"/>
   <xacro:property name="j1_length" value=".276"/>
   <!--0.285 to base plate-->
@@ -98,7 +103,7 @@
     <link name="biorob_link3">
       <visual>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_x6_link_3.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_3.dae"/>
           <!--<cylinder radius="0.02" length="${j3_length}" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
@@ -108,7 +113,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_x6_link_3.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_3.dae"/>
           <!--  <cylinder radius="0.02" length="${j3_length}" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
@@ -123,7 +128,7 @@
     <link name="biorob_link4">
       <visual>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_x6_link_4.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_4.dae"/>
           <!--                    <cylinder radius="0.002" length="0.001" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
@@ -133,7 +138,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_x6_link_4.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_4.dae"/>
           <!--<cylinder radius="0.02" length="${j4_length}" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
@@ -173,7 +178,7 @@
     <link name="biorob_link6">
       <visual>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_x6_link_6.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_6.dae"/>
           <!--<cylinder radius="0.002" length="0.001" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
@@ -183,7 +188,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_x6_link_6.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_6.dae"/>
           <!--<cylinder radius="0.002" length="0.001" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
