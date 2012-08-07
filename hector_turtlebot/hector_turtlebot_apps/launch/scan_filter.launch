@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<launch>
+  <node pkg="hector_turtlebot_scan_filter" type="hector_turtlebot_scan_filter" name="hokuyo_scan_filter"/>
+</launch>

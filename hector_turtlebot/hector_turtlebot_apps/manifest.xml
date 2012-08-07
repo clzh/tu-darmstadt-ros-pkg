@@ -1,0 +1,14 @@
+<package>
+  <description brief="hector_turtlebot_apps provides launch files for launching move_base, SLAM and AMCL localization on the hector_turtlebot">
+
+     hector_turtlebot_apps provides launch files for launching move_base, SLAM and AMCL localization on the hector_turtlebot
+
+  </description>
+  <author>Stefan Kohlbrecher</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_turtlebot_apps</url>
+
+</package>
+
+
