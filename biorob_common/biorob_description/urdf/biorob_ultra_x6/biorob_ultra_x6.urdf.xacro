@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="biorob_v3_x6"
+<robot name="biorob_ultra_x6"
     xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
     xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
     xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
@@ -18,7 +18,7 @@
     
       </link>
 
-    <biorob_v3_x6_arm parent="base" >
+    <biorob_ultra_x6_arm parent="base" >
         <origin xyz="0 0 0" rpy="0 0 0"/>
-    </biorob_v3_x6_arm>
+    </biorob_ultra_x6_arm>
 </robot>
