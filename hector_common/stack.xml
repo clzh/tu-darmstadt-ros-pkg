@@ -4,6 +4,8 @@
   <license>BSD</license>  
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/hector_common</url>
+  <depend stack="common_msgs" />
   <depend stack="ros" />
+  <depend stack="ros_comm" />
 
 </stack>
