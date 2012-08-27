@@ -29,6 +29,21 @@ rosbuild_init()
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
+option(USE_SVN "Use SVN version of BFL instead of the tarball." OFF)
+if (USE_SVN)
+  execute_process(COMMAND cmake -E chdir ${PROJECT_SOURCE_DIR} make -f Makefile.bfl.svn
+                  RESULT_VARIABLE _make_failed)
+  if(_make_failed)
+    message(FATAL_ERROR "Checkout of BFL failed")
+  endif(_make_failed)
+else (USE_SVN)
+  execute_process(COMMAND cmake -E chdir ${PROJECT_SOURCE_DIR} make -f Makefile.bfl.tarball
+                  RESULT_VARIABLE _make_failed)
+  if(_make_failed)
+    message(FATAL_ERROR "Download of BFL failed")
+  endif(_make_failed)
+endif (USE_SVN)
+
 set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/install")
 set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
