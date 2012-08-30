@@ -1,0 +1,16 @@
+<package>
+  <description brief="hector_laserscan_to_pointcloud">
+
+     hector_laserscan_to_pointcloud
+
+  </description>
+  <author>stefan</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_laserscan_to_pointcloud</url>
+  <depend package="roscpp"/>
+  <depend package="laser_geometry"/>
+
+</package>
+
+
