@@ -37,14 +37,14 @@ public:
   {
     ros::NodeHandle nh_;
 
-    scan_subs_ = nh_.subscribe("scan", 1, &LaserscanToPointcloud::scanCallback, this);
-    point_cloud2_pub_ = node_.advertise<sensor_msgs::PointCloud2>("scan_cloud",1,false);
+    scan_sub_ = nh_.subscribe("scan", 1, &LaserscanToPointcloud::scanCallback, this);
+    point_cloud2_pub_ = nh_.advertise<sensor_msgs::PointCloud2>("scan_cloud",1,false);
   }
 
   void scanCallback (const sensor_msgs::LaserScan::ConstPtr& scan_in)
   {
     sensor_msgs::PointCloud2 cloud2;
-    projector_.projectLaser(*scan_in, cloud2, channel_option::Intensity);
+    projector_.projectLaser(*scan_in, cloud2, laser_geometry::channel_option::Intensity);
     point_cloud2_pub_.publish(cloud2);
   }
 
@@ -52,13 +52,13 @@ protected:
   ros::Subscriber scan_sub_;
   ros::Publisher point_cloud2_pub_;
 
-
   laser_geometry::LaserProjection projector_;
-
 };
 
 int main(int argc, char** argv)
 {
+  ros::init(argc, argv, "hector_laserscan_to_pointcloud_node");
+
   LaserscanToPointcloud ls;
 
   ros::spin();
