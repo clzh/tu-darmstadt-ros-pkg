@@ -9,7 +9,7 @@
   <license>LGPL</license>
   <url>http://www.orocos.org/bfl</url>
   <export>
-    <cpp cflags="-I${prefix}/install/include" lflags="-Wl,-rpath,${prefix}/install/lib  -L${prefix}/install/lib -lorocos-bfl"/>
+    <cpp cflags="`pkg-config --cflags eigen3` -I${prefix}/install/include" lflags="-Wl,-rpath,${prefix}/install/lib  -L${prefix}/install/lib -lorocos-bfl"/>
     <doxymaker external="http://orocos.org/bfl" />
   </export>
 
