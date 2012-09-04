@@ -2,7 +2,7 @@ all: bfl
 
 TARBALL = build/orocos-bfl-0.8.0-src.tar.bz2
 TARBALL_URL = http://people.mech.kuleuven.be/~tdelaet/bfl_tar/orocos-bfl-0.8.0-src.tar.bz2
-TARBALL_PATCH = orocos-bfl-0.8.0.patch eigen.patch boost-reference.patch total.patch
+TARBALL_PATCH = orocos-bfl-0.8.0.patch eigen.patch total.patch
 SOURCE_DIR = build/orocos-bfl-0.8.0
 MD5SUM_FILE = orocos-bfl-0.8.0-src.tar.bz2.md5sum
 UNPACK_CMD = tar xjf

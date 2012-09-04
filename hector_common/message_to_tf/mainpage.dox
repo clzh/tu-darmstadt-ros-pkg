@@ -2,7 +2,7 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b odometry_to_tf is ... 
+\b message_to_tf is ... 
 
 <!-- 
 Provide an overview of your package.

@@ -1,5 +1,5 @@
 <stack>
-  <description brief="hector_common">hector_common</description>
+  <description brief="hector_common">hector_common contains some general packages needed by other hector stacks.</description>
   <author>Maintained by Johannes Meyer</author>
   <license>BSD</license>  
   <review status="unreviewed" notes=""/>
