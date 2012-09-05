@@ -13,5 +13,7 @@
     <doxymaker external="http://orocos.org/bfl" />
   </export>
 
+  <rosdep name="eigen" />
+
 </package>
 
