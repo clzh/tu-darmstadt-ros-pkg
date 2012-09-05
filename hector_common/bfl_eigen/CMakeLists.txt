@@ -56,7 +56,6 @@ if (NOT EIGEN_FOUND)
   message(FATAL_ERROR "bfl_eigen requires the Eigen matrix library!")
 endif (NOT EIGEN_FOUND)
 set(EIGEN_INCLUDE "${EIGEN_INCLUDE_DIRS}")
-message(STATUS "Found Eigen in ${EIGEN_INCLUDE}")
 
 set(SOURCE_DIR "orocos-bfl-0.8.0")
 add_subdirectory(build/${SOURCE_DIR} ${SOURCE_DIR})
