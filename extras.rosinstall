@@ -1,0 +1,16 @@
+- svn: 
+    local-name: biorob_common
+    uri: https://tu-darmstadt-ros-pkg.googlecode.com/svn/trunk/biorob_common
+- svn: 
+    local-name: hector_localization
+    uri: https://tu-darmstadt-ros-pkg.googlecode.com/svn/trunk/hector_localization
+- svn: 
+    local-name: hector_nist_arenas_gazebo
+    uri: https://tu-darmstadt-ros-pkg.googlecode.com/svn/trunk/hector_nist_arenas_gazebo
+- svn: 
+    local-name: hector_quadrotor_experimental
+    uri: https://tu-darmstadt-ros-pkg.googlecode.com/svn/trunk/hector_quadrotor_experimental
+- svn: 
+    local-name: hector_ugv_common
+    uri: https://tu-darmstadt-ros-pkg.googlecode.com/svn/trunk/hector_ugv_common
+
