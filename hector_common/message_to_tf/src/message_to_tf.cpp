@@ -9,6 +9,7 @@ std::string g_pose_topic;
 std::string g_imu_topic;
 std::string g_frame_id;
 std::string g_footprint_frame_id;
+std::string g_position_frame_id;
 std::string g_stabilized_frame_id;
 std::string g_child_frame_id;
 
@@ -37,6 +38,14 @@ void sendTransform(geometry_msgs::Pose const &pose, const std_msgs::Header& head
   btMatrix3x3(orientation).getEulerYPR(yaw, pitch, roll);
   tf::Point position;
   tf::pointMsgToTF(pose.position, position);
+
+  // position intermediate transform (x,y,z)
+  if( !g_position_frame_id.empty() && child_frame_id != g_position_frame_id) {
+    tf.child_frame_id_ = g_position_frame_id;
+    tf.setOrigin(tf::Vector3(position.x(), position.y(), position.z() ));
+    tf.setRotation(tf::Quaternion(0.0, 0.0, 0.0, 1.0));
+    addTransform(transforms, tf);
+  }
 
   // footprint intermediate transform (x,y,yaw)
   if (!g_footprint_frame_id.empty() && child_frame_id != g_footprint_frame_id) {
@@ -107,6 +116,7 @@ int main(int argc, char** argv) {
 
   g_footprint_frame_id = "base_footprint";
   g_stabilized_frame_id = "base_stabilized";
+  // g_position_frame_id = "base_position";
 
   ros::NodeHandle priv_nh("~");
   priv_nh.getParam("odometry_topic", g_odometry_topic);
@@ -114,6 +124,7 @@ int main(int argc, char** argv) {
   priv_nh.getParam("imu_topic", g_imu_topic);
   priv_nh.getParam("frame_id", g_frame_id);
   priv_nh.getParam("footprint_frame_id", g_footprint_frame_id);
+  priv_nh.getParam("position_frame_id", g_position_frame_id);
   priv_nh.getParam("stabilized_frame_id", g_stabilized_frame_id);
   priv_nh.getParam("child_frame_id", g_child_frame_id);
 
