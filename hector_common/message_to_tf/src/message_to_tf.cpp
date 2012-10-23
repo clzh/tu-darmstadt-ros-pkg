@@ -3,6 +3,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <sensor_msgs/Imu.h>
 #include <tf/transform_broadcaster.h>
+#include <tf/transform_datatypes.h>
 
 std::string g_odometry_topic;
 std::string g_pose_topic;
@@ -13,7 +14,8 @@ std::string g_position_frame_id;
 std::string g_stabilized_frame_id;
 std::string g_child_frame_id;
 
-tf::TransformBroadcaster *br;
+tf::TransformBroadcaster *g_transform_broadcaster;
+ros::Publisher g_pose_publisher;
 
 void addTransform(std::vector<geometry_msgs::TransformStamped>& transforms, const tf::StampedTransform& tf)
 {
@@ -77,7 +79,15 @@ void sendTransform(geometry_msgs::Pose const &pose, const std_msgs::Header& head
   tf.setRotation(tf::createQuaternionFromRPY(roll, pitch, yaw));
   addTransform(transforms, tf);
 
-  br->sendTransform(transforms);
+  g_transform_broadcaster->sendTransform(transforms);
+
+  // publish pose message
+  if (g_pose_publisher) {
+    geometry_msgs::PoseStamped pose_stamped;
+    pose_stamped.pose = pose;
+    pose_stamped.header = header;
+    g_pose_publisher.publish(pose_stamped);
+  }
 }
 
 void odomCallback(nav_msgs::Odometry const &odometry) {
@@ -108,7 +118,16 @@ void imuCallback(sensor_msgs::Imu const &imu) {
   tf.setRotation(tf::createQuaternionFromRPY(roll, pitch, 0.0));
   addTransform(transforms, tf);
 
-  br->sendTransform(transforms);
+  g_transform_broadcaster->sendTransform(transforms);
+
+  // publish pose message
+  if (g_pose_publisher) {
+    geometry_msgs::PoseStamped pose_stamped;
+    pose_stamped.header.stamp = imu.header.stamp;
+    pose_stamped.header.frame_id = g_stabilized_frame_id;
+    tf::quaternionTFToMsg(tf.getRotation(), pose_stamped.pose.orientation);
+    g_pose_publisher.publish(pose_stamped);
+  }
 }
 
 int main(int argc, char** argv) {
@@ -128,7 +147,7 @@ int main(int argc, char** argv) {
   priv_nh.getParam("stabilized_frame_id", g_stabilized_frame_id);
   priv_nh.getParam("child_frame_id", g_child_frame_id);
 
-  br = new tf::TransformBroadcaster;
+  g_transform_broadcaster = new tf::TransformBroadcaster;
 
   ros::NodeHandle node;
   ros::Subscriber sub1, sub2, sub3;
@@ -141,7 +160,19 @@ int main(int argc, char** argv) {
     return 1;
   }
 
+  bool publish_pose = true;
+  priv_nh.getParam("publish_pose", publish_pose);
+  if (publish_pose) {
+    std::string publish_pose_topic;
+    priv_nh.getParam("publish_pose_topic", publish_pose_topic);
+
+    if (!publish_pose_topic.empty())
+      g_pose_publisher = node.advertise<geometry_msgs::PoseStamped>(publish_pose_topic, 10);
+    else
+      g_pose_publisher = priv_nh.advertise<geometry_msgs::PoseStamped>("pose", 10);
+  }
+
   ros::spin();
-  delete br;
+  delete g_transform_broadcaster;
   return 0;
 }
