@@ -1,9 +1,0 @@
-<stack>
-  <description brief="hector_sandbox">hector_sandbox contains experimental/in development/tool packages used by Team Hector Darmstadt</description>
-  <author>Maintained by Stefan Kohlbrecher</author>
-  <license>BSD</license>  
-  <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/hector_sandbox</url>
-  <depend stack="ros" />
-
-</stack>
