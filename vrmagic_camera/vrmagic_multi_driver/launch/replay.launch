@@ -1,0 +1,10 @@
+<launch>
+  <node name="cam_display_left" pkg="image_view" type="image_view"
+    args="image:=/stereo/left/image_raw" />
+
+  <node name="cam_display_right" pkg="image_view" type="image_view"
+    args="image:=/stereo/right/image_raw" />
+
+  <node name="cam_mimicri" pkg="rosbag" type="rosbag"
+    args="play /home/darkschneider/ros/bags/vr-record.bag" />
+</launch>

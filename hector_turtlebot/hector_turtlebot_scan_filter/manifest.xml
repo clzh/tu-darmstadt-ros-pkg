@@ -1,0 +1,15 @@
+<package>
+  <description brief="hector_turtlebot_scan_filter performs simple index-based filtering of laser scanner data to prevent robot parts and shadow points from showing up in laser scans">
+
+     hector_turtlebot_scan_filter performs simple index-based filtering of laser scanner data to prevent robot parts and shadow points from showing up in laser scans
+
+  </description>
+  <author>Stefan Kohlbrecher</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_turtlebot_scan_filter</url>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+

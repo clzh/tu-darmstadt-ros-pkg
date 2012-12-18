@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<robot name="hector_turtlebot"  
+       xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://ros.org/wiki/xacro">
+  <include filename="$(find turtlebot_description)/urdf/turtlebot_hardware.urdf.xacro" />
+  <include filename="$(find hector_turtlebot_description)/urdf/hector_turtlebot_body.urdf.xacro" />
+  <include filename="$(find turtlebot_description)/urdf/turtlebot_calibration.xacro" />
+  <include filename="$(find hector_turtlebot_description)/urdf/hector_turtlebot_kinect.urdf.xacro" />
+
+  <property name="M_PI" value="3.14159"/>
+  <property name="SCALE" value="0.0254"/>
+
+  <!-- Body of TurtleBot, with plates, standoffs and Create (including sim sensors) -->
+  <hector_turtlebot_body/>
+  
+  <!-- Kinect frames and mounting (includes simulation) -->
+  <hector_turtlebot_kinect/>
+  
+  <include filename="$(find hector_sensors_description)/urdf/hokuyo_utm30lx.urdf.xacro" />
+  <xacro:hokuyo_utm30lx name="hokuyo_laser" parent="plate_2_link" ros_topic="hokuyo_scan" update_rate="40" ray_count="1040" min_angle="130" max_angle="-130">
+    <origin xyz="-0.115 0.0 0.06" rpy="0 0 0"/>
+  </xacro:hokuyo_utm30lx>
+</robot>

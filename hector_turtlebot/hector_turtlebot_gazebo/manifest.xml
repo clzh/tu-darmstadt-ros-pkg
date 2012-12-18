@@ -1,0 +1,19 @@
+<package>
+  <description brief="hector_turtlebot_gazebo provides launch files and dependencies for using the hector_turtlebot in gazebo">
+
+     hector_turtlebot_gazebo provides launch files and dependencies for using the hector_turtlebot in gazebo
+
+  </description>
+  <author>Stefan Kohlbrecher</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_turtlebot_gazebo</url>
+  <depend package="hector_turtlebot_description"/>
+  <depend package="hector_turtlebot_scan_filter"/>
+  <depend package="turtlebot_gazebo"/>
+  <depend package="turtlebot_gazebo_plugins"/>
+  <depend package="pointcloud_to_laserscan"/>
+
+</package>
+
+
