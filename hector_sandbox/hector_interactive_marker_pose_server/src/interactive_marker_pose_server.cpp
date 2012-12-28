@@ -82,6 +82,7 @@ interactive_markers::MenuHandler menu_handler;
 
 ros::Publisher posePublisher_;
 geometry_msgs::PoseStamped out_pose_;
+std::string p_frame_id_;
 
 
 // %Tag(processFeedback)%
@@ -177,7 +178,7 @@ void saveMarker( InteractiveMarker int_marker )
 void make6DofMarker( bool fixed )
 {
   InteractiveMarker int_marker;
-  int_marker.header.frame_id = "/base";
+  int_marker.header.frame_id = p_frame_id_;
   int_marker.pose.position.y = -3.0 * marker_pos++;;
   int_marker.scale = 0.2;
 
@@ -242,6 +243,11 @@ int main(int argc, char** argv)
   ros::NodeHandle n;
 
   posePublisher_ = n.advertise<geometry_msgs::PoseStamped>("pose", 1, false);
+
+  ros::NodeHandle private_nh_("~");
+
+  private_nh_.param("frame_id", p_frame_id_, std::string("base"));
+
 
   // create a timer to update the published transforms
   //ros::Timer frame_timer = n.createTimer(ros::Duration(0.01), frameCallback);
