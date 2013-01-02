@@ -83,6 +83,7 @@ interactive_markers::MenuHandler menu_handler;
 ros::Publisher posePublisher_;
 geometry_msgs::PoseStamped out_pose_;
 std::string p_frame_id_;
+std::string p_marker_name_;
 
 
 // %Tag(processFeedback)%
@@ -247,12 +248,13 @@ int main(int argc, char** argv)
   ros::NodeHandle private_nh_("~");
 
   private_nh_.param("frame_id", p_frame_id_, std::string("base"));
+  private_nh_.param("marker_name", p_marker_name_, std::string("interactive_marker_pose_control"));
 
 
   // create a timer to update the published transforms
   //ros::Timer frame_timer = n.createTimer(ros::Duration(0.01), frameCallback);
 
-  server.reset( new interactive_markers::InteractiveMarkerServer("interactive_marker_pose_control","",false) );
+  server.reset( new interactive_markers::InteractiveMarkerServer(p_marker_name_,"",false) );
 
   ros::Duration(0.1).sleep();
 
