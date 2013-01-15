@@ -9,8 +9,8 @@ name="biorob_v3_x4">
   <xacro:property name="j1_length" value=".276"/>
   <!--0.285 to base plate-->
   <xacro:property name="j2_length" value=".307"/>
-  <xacro:property name="j3_length" value=".310"/>
-  <xacro:property name="j4_length" value=".103"/>
+  <xacro:property name="j3_length" value=".311"/>
+  <xacro:property name="j4_length" value=".047"/>
   <xacro:property name="pi" value="3.1415926536"/>
   
   <xacro:macro name="default_inertial" params="mass">

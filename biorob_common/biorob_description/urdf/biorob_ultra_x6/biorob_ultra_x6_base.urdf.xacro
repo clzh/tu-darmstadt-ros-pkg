@@ -11,8 +11,8 @@
   <xacro:property name="j2_length" value=".305"/>
   <xacro:property name="j3_length" value=".10"/>
   <xacro:property name="j4_length" value=".205"/>
-  <xacro:property name="j5_length" value=".14"/>
-  <xacro:property name="j6_length" value=".08"/>
+  <xacro:property name="j5_length" value=".122"/>
+  <xacro:property name="j6_length" value=".045"/>
   <xacro:property name="pi" value="3.1415926536"/>
   
   <xacro:macro name="default_inertial" params="mass">

@@ -10,7 +10,7 @@ name="biorob_ultra_x4">
   <!--0.285 to base plate-->
   <xacro:property name="j2_length" value=".270"/>
   <xacro:property name="j3_length" value=".270"/>
-  <xacro:property name="j4_length" value=".115"/>
+  <xacro:property name="j4_length" value=".066"/>
   <xacro:property name="pi" value="3.1415926536"/>
   
   <xacro:macro name="default_inertial" params="mass">
