@@ -44,7 +44,7 @@ public:
   void scanCallback (const sensor_msgs::LaserScan::ConstPtr& scan_in)
   {
     sensor_msgs::PointCloud2 cloud2;
-    projector_.projectLaser(*scan_in, cloud2, laser_geometry::channel_option::Intensity);
+    projector_.projectLaser(*scan_in, cloud2, 29.0, laser_geometry::channel_option::Intensity);
     point_cloud2_pub_.publish(cloud2);
   }
 
