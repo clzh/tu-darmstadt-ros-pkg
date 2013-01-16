@@ -5,8 +5,8 @@ xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 name="biorob_ultra_x4">
 
-  <xacro:property name="base_height" value=".009"/>
-  <xacro:property name="j1_length" value=".284"/>
+  <xacro:property name="base_height" value=".008"/>
+  <xacro:property name="j1_length" value=".277"/>
   <!--0.285 to base plate-->
   <xacro:property name="j2_length" value=".305"/>
   <xacro:property name="j3_length" value=".305"/>
