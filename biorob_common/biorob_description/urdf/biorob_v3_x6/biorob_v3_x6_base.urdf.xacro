@@ -9,10 +9,10 @@
   <xacro:property name="j1_length" value=".276"/>
   <!--0.285 to base plate-->
   <xacro:property name="j2_length" value=".307"/>
-  <xacro:property name="j3_length" value=".10"/>
-  <xacro:property name="j4_length" value=".209"/>
-  <xacro:property name="j5_length" value=".103"/>
-  <xacro:property name="j6_length" value=".021"/>
+  <xacro:property name="j3_length" value=".10" comment=".130"/>
+  <xacro:property name="j4_length" value=".209" comment=".181"/>
+  <xacro:property name="j5_length" value=".103" comment=".122"/>
+  <xacro:property name="j6_length" value=".021" comment=".018 rohr zu rohr / .012 rot achse zu Befestigung .012"/>
   <xacro:property name="pi" value="3.1415926536"/>
   
   <xacro:macro name="default_inertial" params="mass">

@@ -11,7 +11,7 @@
   <xacro:property name="j2_length" value=".305"/>
   <xacro:property name="j3_length" value=".100"/>
   <xacro:property name="j4_length" value=".205"/>
-  <xacro:property name="j5_length" value=".150"/>
+  <xacro:property name="j5_length" value=".066"/>
   <!--<xacro:property name="j6_length" value=".08"/>-->
   <xacro:property name="pi" value="3.1415926536"/>
   

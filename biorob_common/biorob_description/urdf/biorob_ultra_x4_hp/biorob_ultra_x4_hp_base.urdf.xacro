@@ -3,7 +3,7 @@
 xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
 xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-name="biorob_ultra_x4">
+name="biorob_ultra_x4_hp">
 
   <xacro:property name="base_height" value=".009"/>
   <xacro:property name="j1_length" value=".284"/>
@@ -21,7 +21,7 @@ name="biorob_ultra_x4">
     </inertial>
   </xacro:macro>
   
-  <macro name="biorob_ultra_x4_arm" params="parent *origin">
+  <macro name="biorob_ultra_x4_hp_arm" params="parent *origin">
     <link name="biorob_base_link">
       <visual>
         <geometry>

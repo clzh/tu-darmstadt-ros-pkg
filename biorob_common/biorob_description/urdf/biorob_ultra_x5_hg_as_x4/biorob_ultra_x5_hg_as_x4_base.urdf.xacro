@@ -1,18 +1,16 @@
 <?xml version="1.0"?>
 <robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       name="biorob_ultra_x5_hg">
-       
-  <xacro:property name="base_height" value=".01"/>
+xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+name="biorob_ultra_x5_hg_as_x4">
+
+  <xacro:property name="base_height" value=".009"/>
   <xacro:property name="j1_length" value=".284"/>
   <!--0.285 to base plate-->
   <xacro:property name="j2_length" value=".305"/>
   <xacro:property name="j3_length" value=".305"/>
-  <!--<xacro:property name="j4_length" value=".205"/>-->
-  <xacro:property name="j5_length" value=".122"/>
-  <xacro:property name="j6_length" value=".045"/>
+  <xacro:property name="j4_length" value=".167"/>
   <xacro:property name="pi" value="3.1415926536"/>
   
   <xacro:macro name="default_inertial" params="mass">
@@ -23,7 +21,7 @@
     </inertial>
   </xacro:macro>
   
-  <macro name="biorob_ultra_x5_hg_arm" params="parent *origin">
+  <macro name="biorob_ultra_x5_hg_as_x4_arm" params="parent *origin">
     <link name="biorob_base_link">
       <visual>
         <geometry>
@@ -125,31 +123,6 @@
       <material>biorob_material/Grey</material>
       <!--<material>HLUGV/Green</material>-->
     </gazebo>
-  <!--  <link name="biorob_link4">
-      <visual>
-        <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_4.dae"/>
-
-        </geometry>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
-        <material name="red">
-                  
-                </material>
-      </visual>
-      <collision>
-        <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_x6/biorob_v3_x6_link_4.dae"/>
-
-        </geometry>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
-      </collision>
-      <xacro:default_inertial mass="0.01"/>
-    </link>-->
-    <gazebo reference="biorob_link4">
-      <selfCollide>true</selfCollide>
-      <material>biorob_material/Grey</material>
-      <!--<material>HLUGV/Green</material>-->
-    </gazebo>
     <link name="biorob_link4">
       <visual>
         <geometry>
@@ -168,34 +141,9 @@
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
       </collision>
-      <xacro:default_inertial mass="0.01"/>
+      <xacro:default_inertial mass="0.1"/>
     </link>
     <gazebo reference="biorob_link4">
-      <selfCollide>true</selfCollide>
-      <material>biorob_material/Grey</material>
-      <!--<material>HLUGV/Green</material>-->
-    </gazebo>
-    <link name="biorob_link5">
-      <visual>
-        <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_ultra/biorob_ultra_tcp_end_80.dae"/>
-          <!--<cylinder radius="0.002" length="0.001" />-->
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <material name="red">
-                  
-                </material>
-      </visual>
-      <collision>
-        <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_ultra/biorob_ultra_tcp_end_80.dae"/>
-          <!--<cylinder radius="0.002" length="0.001" />-->
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </collision>
-      <xacro:default_inertial mass="0.01"/>
-    </link>
-    <gazebo reference="biorob_link5">
       <selfCollide>true</selfCollide>
       <material>biorob_material/Grey</material>
       <!--<material>HLUGV/Green</material>-->
@@ -205,15 +153,15 @@
         <geometry>
           <cylinder radius="0.01" length="0.001" />
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
         <material name="red">                  
         </material>
       </visual>
       <collision>
         <geometry>
-          <cylinder radius="0.01" length="0.001" />
+          <cylinder radius="0.02" length="0.001" />
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
       </collision>
       <xacro:default_inertial mass="0.05"/>
     </link>
@@ -252,34 +200,16 @@
       <parent link="biorob_link3"/>
       <child link="biorob_link4"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="${j3_length} 0 0"/>
-      <limit effort="6.0" lower="${-pi*(100/180)}" upper="${pi*(100/180)}" velocity="1.5708"/>
-      <!-- TODO: give correct effort limits -->
-      <dynamics damping="1.0" friction="1.0"/>
-    </joint>
-<!--    <joint name="joint5" type="revolute">
-      <parent link="biorob_link4"/>
-      <child link="biorob_link5"/>
-      <axis xyz="0 0 1"/>
-      <origin xyz="${j4_length} 0 0.0"/>
-      <limit effort="6.0" lower="${-pi*(100/180)}" upper="${pi*(100/180)}" velocity="1.5708"/>
-
-      <dynamics damping="1.0" friction="1.0"/>
-    </joint>-->
-    <joint name="joint5" type="revolute">
-      <parent link="biorob_link4"/>
-      <child link="biorob_link5"/>
-      <axis xyz="0 0 1"/>
-      <origin xyz="${j5_length} 0 0" rpy="${pi/2} 0 ${pi/2}"/>
+      <origin xyz="${j3_length} 0 0.0"/>
       <limit effort="6.0" lower="${-pi*(100/180)}" upper="${pi*(100/180)}" velocity="1.5708"/>
       <!-- TODO: give correct effort limits -->
       <dynamics damping="1.0" friction="1.0"/>
     </joint>
     <joint name="tool_frame" type="fixed">
-      <parent link="biorob_link5"/>
+      <parent link="biorob_link4"/>
       <child link="biorob_toolframe"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0 0 ${j6_length}" rpy="0 0 0"/>
+      <origin xyz="${j4_length} 0.0 0.0" rpy="0 0 0"/>
     </joint>
     
     <transmission type="pr2_mechanism_model/SimpleTransmission" name="joint1_trans">
@@ -302,17 +232,8 @@
       <joint name="joint4"/>
       <mechanicalReduction>1.0</mechanicalReduction>
     </transmission>
-    <transmission type="pr2_mechanism_model/SimpleTransmission" name="joint5_trans">
-      <actuator name="joint5_motor"/>
-      <joint name="joint5"/>
-      <mechanicalReduction>1.0</mechanicalReduction>
-    </transmission>
-    <transmission type="pr2_mechanism_model/SimpleTransmission" name="joint6_trans">
-      <actuator name="joint6_motor"/>
-      <joint name="joint6"/>
-      <mechanicalReduction>1.0</mechanicalReduction>
-    </transmission>
-    <!--    <gazebo reference="biorob_toolframe">
+    
+<!--    <gazebo reference="biorob_toolframe">
       <sensor:camera name="finger_tip_camera_sensor">
         <imageSize>640 480</imageSize>
         <imageFormat>R8G8B8</imageFormat>
@@ -325,19 +246,18 @@
           <updateRate>20.0</updateRate>
           <imageTopicName>finger_tip_cam/image</imageTopicName>
           <frameName>biorob_toolframe</frameName>
-          <interface:camera name="finger_tip_camera_iface" />
+          <interface:camera name="finger_tip_camera_iface"/>
         </controller:gazebo_ros_camera>
       </sensor:camera>
       <turnGravityOff>true</turnGravityOff>
       <material>PR2/Blue</material>
+    </gazebo>
+    <gazebo>
+      <controller:gazebo_ros_controller_manager name="gazebo_ros_controller_manager" plugin="libgazebo_ros_controller_manager.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>100.0</updateRate>
+        <interface:audio name="gazebo_ros_controller_manager_dummy_iface_biorob"/>
+      </controller:gazebo_ros_controller_manager>
     </gazebo>-->
-    <!--        <gazebo>
-              <controller:gazebo_ros_controller_manager name="gazebo_ros_controller_manager" plugin="libgazebo_ros_controller_manager.so">
-                <alwaysOn>true</alwaysOn>
-                <updateRate>100.0</updateRate>
-                <interface:audio name="gazebo_ros_controller_manager_dummy_iface_biorob" />
-              </controller:gazebo_ros_controller_manager>
-              
-            </gazebo>-->
   </macro>
 </robot>
