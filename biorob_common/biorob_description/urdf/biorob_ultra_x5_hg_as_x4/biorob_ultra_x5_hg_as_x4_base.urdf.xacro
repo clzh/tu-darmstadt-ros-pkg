@@ -6,8 +6,8 @@ xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 name="biorob_ultra_x5_hg_as_x4">
 
   <xacro:property name="base_height" value=".008"/>
-  <xacro:property name="j1_length" value=".277"/>
-  <!--0.285 to base plate-->
+  <xacro:property name="j1_length" value=".276"/>
+  <!--0.284 to base plate-->
   <xacro:property name="j2_length" value=".305"/>
   <xacro:property name="j3_length" value=".305"/>
   <xacro:property name="j4_length" value=".167"/>
@@ -184,7 +184,7 @@ name="biorob_ultra_x5_hg_as_x4">
       <parent link="biorob_link1"/>
       <child link="biorob_link2"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0 0 ${j1_length-base_height}" rpy="${pi/2} 0 0"/>
+      <origin xyz="0 0 ${j1_length}" rpy="${pi/2} 0 0"/>
       <limit effort="6.0" lower="${-pi*(170/180)}" upper="${pi*(170/180)}" velocity="1.5708"/>
       <dynamics damping="1.0" friction="1.0"/>
     </joint>
