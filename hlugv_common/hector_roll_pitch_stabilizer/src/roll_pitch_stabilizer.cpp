@@ -51,7 +51,7 @@ void stabilize() {
   {
       tfL_->lookupTransform(p_base_frame_, p_base_stabilized_frame_, ros::Time(0), transform_);
 
-      btScalar yaw, pitch, roll;
+      tfScalar yaw, pitch, roll;
       transform_.getBasis().getEulerYPR(yaw, pitch, roll);
 
       std_msgs::Float64 tmp;
