@@ -1,0 +1,8 @@
+<library path="lib/libhector_pose_estimation">
+  <class name="hector_visual_pose_estimation/PoseEstimation" type="hector_pose_estimation::PoseEstimation" base_class_type="nodelet::Nodelet">
+  <description>
+    This nodelet initializes the visual pose estimation filter with a system model.
+  </description>
+  </class>
+</library>
+
