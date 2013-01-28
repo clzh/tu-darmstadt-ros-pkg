@@ -1,0 +1,19 @@
+<package>
+  <description brief="hector_quadrotor_model">
+
+     hector_quadrotor_model
+
+  </description>
+  <author>Johannes Meyer, Thorsten Graber, Alexander Sendobry</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_quadrotor_model</url>
+  <depend package="hector_uav_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="nav_msgs"/>
+  <export>
+    <cpp cflags="-I${prefix}/include" />
+  </export>
+</package>
+
+
