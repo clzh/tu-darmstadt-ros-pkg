@@ -1,0 +1,28 @@
+<package>
+  <description brief="hector_visual_pose_estimation">
+
+     hector_visual_pose_estimation is a spcialization of hector_pose_estimation node and nodelet.
+
+  </description>
+  <author>Thorsten Graber</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hector_visual_pose_estimation</url>
+
+  <depend package="hector_pose_estimation_core" />
+  <depend package="hector_quadrotor_model"/>
+  <depend package="nodelet" />
+  <depend package="sensor_msgs" />
+  <depend package="geometry_msgs" />
+  <depend package="nav_msgs" />
+  <!-- depend package="mav_msgs" /-->
+  <depend package="hector_uav_msgs"/>
+  <depend package="tf" />
+
+  <depend package="message_filters" />
+
+  <export>
+    <nodelet plugin="${prefix}/nodelet_plugins.xml" />
+    <cpp cflags="-I${prefix}/include" lflags="-L${prefix}/lib" />
+  </export>
+</package>
