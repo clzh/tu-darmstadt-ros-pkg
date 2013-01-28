@@ -98,6 +98,9 @@ protected:
   mutable StateVector x_pred_;
   mutable Matrix A_;
   SystemStatus measurement_status_;
+  mutable ColumnVector x_internal_;
+  mutable ColumnVector x_pred_internal_;
+  mutable Matrix A_internal_;
 };
 
 } // namespace hector_pose_estimation
