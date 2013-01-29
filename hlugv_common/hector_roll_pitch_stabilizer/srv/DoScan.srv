@@ -1,7 +1,0 @@
-float64 min_angle_pitch
-float64 max_angle_pitch
-float64 min_angle_roll
-float64 max_angle_roll
-float64 step
-int64 sleep_time_ms
----
