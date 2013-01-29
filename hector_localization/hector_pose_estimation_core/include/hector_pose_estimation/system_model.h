@@ -96,7 +96,7 @@ protected:
   const StateVector& x_;
   const ColumnVector& u_;
   mutable StateVector x_pred_;
-  mutable Matrix A_;
+  mutable Matrix A_, B_;
   SystemStatus measurement_status_;
   mutable ColumnVector x_internal_;
   mutable ColumnVector x_pred_internal_;

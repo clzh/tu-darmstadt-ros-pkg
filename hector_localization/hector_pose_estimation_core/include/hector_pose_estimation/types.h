@@ -32,7 +32,7 @@
 #include <hector_pose_estimation/matrix.h>
 
 // Use system model with angular rates.
-// #define USE_RATE_SYSTEM_MODEL
+#define USE_RATE_SYSTEM_MODEL
 
 namespace hector_pose_estimation {
 
@@ -57,7 +57,7 @@ namespace hector_pose_estimation {
     BIAS_ACCEL_Z,
     BIAS_GYRO_X,
     BIAS_GYRO_Y,
-    BIAS_GYRO_Z,
+    BIAS_GYRO_Z
   };
   static const unsigned int StateDimension = BIAS_GYRO_Z;
   typedef ColumnVector_<StateDimension> StateVector;
