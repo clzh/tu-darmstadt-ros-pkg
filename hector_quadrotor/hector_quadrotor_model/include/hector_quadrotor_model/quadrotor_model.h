@@ -245,15 +245,19 @@ public:
                   const Parameters& parameters);
 
     using SystemModel::update;
-    void update(const double& dt, const hector_uav_msgs::MotorStatus& status) {
+    void update(const double& dt, const hector_uav_msgs::MotorStatus& status, const geometry_msgs::Twist& twist, const geometry_msgs::Vector3& wind) {
         Input u;
         u.motor_status.voltage = status.voltage;
+        u.twist = twist;
+        u.wind = wind;
         update(dt, u);
     }
 
-    void update(const ros::Time& time, const hector_uav_msgs::MotorStatus& status) {
+    void update(const ros::Time& time, const hector_uav_msgs::MotorStatus& status, const geometry_msgs::Twist& twist, const geometry_msgs::Vector3& wind) {
         Input u;
         u.motor_status.voltage = status.voltage;
+        u.twist = twist;
+        u.wind = wind;
         update(time, u);
     }
 

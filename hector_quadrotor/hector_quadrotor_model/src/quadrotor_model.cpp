@@ -117,7 +117,6 @@ void Propulsion::f(State &x_pred, const State &x, const double dt, const Input &
     output.wrench.force.x = F[0];
     output.wrench.force.y = F[1];
     output.wrench.force.z = F[2];
-
     // torque for rotating quadrocopter around x-axis is the mechanical torque
     output.wrench.torque.x = (F_m[3]-F_m[1])*l_m;
     // torque for rotating quadrocopter around y-axis is the mechanical torque
@@ -161,14 +160,14 @@ void Quadrotor::f(State &x_pred, const State &x, const double dt, const Input &i
     // update propulsion model
     Propulsion::Input propulsion_input;
     propulsion_input.motor_status = input.motor_status;
-    propulsion_input.twist = input.twist; //getBodyTwist();
+    propulsion_input.twist = input.twist;
     Propulsion::Output propulsion_output;
     Propulsion::f(x_pred.propulsion, x.propulsion, dt, propulsion_input, propulsion_output, parameters.propulsion);
 
     // update aerodynamics model
     Aerodynamics::Input aerodynamics_input;
     aerodynamics_input.wind = input.wind;
-    aerodynamics_input.twist = propulsion_input.twist; //getBodyTwist();
+    aerodynamics_input.twist = propulsion_input.twist;
     Aerodynamics::Output aerodynamics_output;
     Aerodynamics::f(x_pred.aerodynamics, x.aerodynamics, dt, aerodynamics_input, aerodynamics_output, parameters.aerodynamics);
 
