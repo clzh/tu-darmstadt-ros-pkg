@@ -61,26 +61,18 @@ public:
 
     virtual void Limit(StateVector& x) const;
 
-    void setGravity(double gravity) { gravity_ = gravity; }
-    double getGravity() const { return gravity_; }
-
 protected:
     static void normalize(StateVector& x);
+    geometry_msgs::Vector3 getBodyVel(const geometry_msgs::Vector3& nav_vel) const;
 
 protected:
     hector_quadrotor_model::Quadrotor* quad_model;
 
-
-    /// old stuff
-    double gravity_;
+    double voltage_stddev_;
     double rate_stddev_;
-#ifdef USE_RATE_SYSTEM_MODEL
     double angular_acceleration_stddev_;
-#endif // USE_RATE_SYSTEM_MODEL
     double acceleration_stddev_;
     double velocity_stddev_;
-    double acceleration_drift_;
-    double rate_drift_;
 
     mutable double q0,q1,q2,q3;
     mutable SymmetricMatrix_<StateDimension> noise_;
