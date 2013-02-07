@@ -39,18 +39,24 @@ public:
 
     scan_sub_ = nh_.subscribe("scan", 1, &LaserscanToPointcloud::scanCallback, this);
     point_cloud2_pub_ = nh_.advertise<sensor_msgs::PointCloud2>("scan_cloud",1,false);
+
+
+    ros::NodeHandle pnh_;
+    pnh_.param("max_range", p_max_range_, 29.0);
   }
 
   void scanCallback (const sensor_msgs::LaserScan::ConstPtr& scan_in)
   {
     sensor_msgs::PointCloud2 cloud2;
-    projector_.projectLaser(*scan_in, cloud2, 29.0, laser_geometry::channel_option::Intensity);
+    projector_.projectLaser(*scan_in, cloud2, p_max_range_, laser_geometry::channel_option::Intensity);
     point_cloud2_pub_.publish(cloud2);
   }
 
 protected:
   ros::Subscriber scan_sub_;
   ros::Publisher point_cloud2_pub_;
+
+  double p_max_range_;
 
   laser_geometry::LaserProjection projector_;
 };
