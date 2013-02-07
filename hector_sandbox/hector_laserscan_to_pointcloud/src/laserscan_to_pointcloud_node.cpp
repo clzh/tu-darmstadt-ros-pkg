@@ -41,7 +41,7 @@ public:
     point_cloud2_pub_ = nh_.advertise<sensor_msgs::PointCloud2>("scan_cloud",1,false);
 
 
-    ros::NodeHandle pnh_;
+    ros::NodeHandle pnh_("~");
     pnh_.param("max_range", p_max_range_, 29.0);
   }
 
