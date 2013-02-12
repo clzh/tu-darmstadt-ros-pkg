@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<robot
+xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+xmlns:xacro="http://ros.org/wiki/xacro"
+>
+
+  <!-- Quadrotor Pose Estimation Plugin -->
+  <xacro:macro name="quadrotor_pose_estimation">
+    <gazebo>
+      <controller:hector_quadrotor_pose_estimation name="quadrotor_pose_estimation" plugin="libgazebo_rtt_plugin.so">
+        <updateRate>100.0</updateRate>
+        <import>hector_pose_estimation_rtt</import>
+        <component>hector_pose_estimation::PoseEstimationTaskContext</component>
+
+        <port name="raw_imu" queue_size="10" />
+        <port name="magnetic" />
+        <port name="pressure_height" />
+        <port name="fix" />
+        <port name="fix_velocity" />
+        <port name="state" queue_size="10" />
+        <port name="imu" queue_size="10" />
+      </controller:hector_quadrotor_pose_estimation>
+    </gazebo>
+  </xacro:macro>
+</robot>
