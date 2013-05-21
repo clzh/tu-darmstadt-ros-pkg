@@ -153,7 +153,7 @@
     <link name="biorob_link5">
       <visual>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4_0122.stl"/>
           <!--  <cylinder radius="0.02" length="${j4_length}" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
@@ -163,7 +163,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4_0122.stl"/>
           <!--<cylinder radius="0.02" length="${j4_length}" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
@@ -178,7 +178,7 @@
     <link name="biorob_link6">
       <visual>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_ultra/biorob_ultra_tcp_end_80.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_ultra/biorob_ultra_tcp_end_45.stl"/>
           <!--<cylinder radius="0.002" length="0.001" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -188,7 +188,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_ultra/biorob_ultra_tcp_end_80.dae"/>
+          <mesh filename="package://biorob_description/meshes/biorob_ultra/biorob_ultra_tcp_end_45.stl"/>
           <!--<cylinder radius="0.002" length="0.001" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0"/>
