@@ -43,13 +43,35 @@ public:
 
     ros::NodeHandle pnh_("~");
     pnh_.param("max_range", p_max_range_, 29.0);
+    pnh_.param("min_range", p_min_range_, 0.0);
   }
 
   void scanCallback (const sensor_msgs::LaserScan::ConstPtr& scan_in)
   {
-    sensor_msgs::PointCloud2 cloud2;
-    projector_.projectLaser(*scan_in, cloud2, p_max_range_, laser_geometry::channel_option::Intensity);
-    point_cloud2_pub_.publish(cloud2);
+    cloud2_.data.clear();
+
+    if (p_min_range_ > 0.0){
+      scan_min_range_ = *scan_in;
+
+      size_t num_scans = scan_min_range_.ranges.size();
+
+      std::vector<float>& ranges_vec = scan_min_range_.ranges;
+
+      float min_range = static_cast<float>(p_min_range_);
+
+      for (size_t i = 0; i < num_scans; ++i){
+        if (ranges_vec[i] < min_range){
+          ranges_vec[i] = -INFINITY;
+        }
+      }
+
+      projector_.projectLaser(scan_min_range_, cloud2_, p_max_range_, laser_geometry::channel_option::Intensity);
+
+    }else{
+      projector_.projectLaser(*scan_in, cloud2_, p_max_range_, laser_geometry::channel_option::Intensity);
+    }
+
+    point_cloud2_pub_.publish(cloud2_);
   }
 
 protected:
@@ -57,8 +79,12 @@ protected:
   ros::Publisher point_cloud2_pub_;
 
   double p_max_range_;
+  double p_min_range_;
 
   laser_geometry::LaserProjection projector_;
+
+  sensor_msgs::PointCloud2 cloud2_;
+  sensor_msgs::LaserScan scan_min_range_;
 };
 
 int main(int argc, char** argv)
