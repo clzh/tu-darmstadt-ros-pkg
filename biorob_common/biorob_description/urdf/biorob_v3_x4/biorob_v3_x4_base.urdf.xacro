@@ -126,7 +126,7 @@ name="biorob_v3_x4">
     <link name="biorob_link4">
       <visual>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4_0047.stl"/>
+          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4_0047.dae"/>
           <!--  <cylinder radius="0.02" length="${j4_length}" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
@@ -136,7 +136,7 @@ name="biorob_v3_x4">
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4_0047.stl"/>
+          <mesh filename="package://biorob_description/meshes/biorob_common/biorob_link_4_0047.dae"/>
           <!--<cylinder radius="0.02" length="${j4_length}" />-->
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
