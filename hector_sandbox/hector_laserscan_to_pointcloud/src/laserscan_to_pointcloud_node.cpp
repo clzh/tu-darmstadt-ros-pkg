@@ -28,6 +28,7 @@
 
 #include <ros/ros.h>
 #include <laser_geometry/laser_geometry.h>
+#include <tf/transform_listener.h>
 
 class LaserscanToPointcloud
 {
@@ -44,11 +45,30 @@ public:
     ros::NodeHandle pnh_("~");
     pnh_.param("max_range", p_max_range_, 29.0);
     pnh_.param("min_range", p_min_range_, 0.0);
+
+
+    pnh_.param("use_high_fidelity_projection", p_use_high_fidelity_projection_, false);
+
+    if (p_use_high_fidelity_projection_){
+      pnh_.param("target_frame", p_target_frame_, std::string("NO_TARGET_FRAME_SPECIFIED"));
+
+      if (p_target_frame_ == "NO_TARGET_FRAME_SPECIFIED"){
+        ROS_ERROR("No target frame specified! Needs to be set for high fidelity projection to work");
+        p_use_high_fidelity_projection_ = false;
+        return;
+      }
+
+      tfl_.reset(new tf::TransformListener());
+
+    }
+
   }
 
   void scanCallback (const sensor_msgs::LaserScan::ConstPtr& scan_in)
   {
     cloud2_.data.clear();
+
+    const sensor_msgs::LaserScan* scan_to_convert = scan_in.get();
 
     if (p_min_range_ > 0.0){
       scan_min_range_ = *scan_in;
@@ -65,11 +85,15 @@ public:
         }
       }
 
-      projector_.projectLaser(scan_min_range_, cloud2_, p_max_range_, laser_geometry::channel_option::Intensity);
-
-    }else{
-      projector_.projectLaser(*scan_in, cloud2_, p_max_range_, laser_geometry::channel_option::Intensity);
+      scan_to_convert = &scan_min_range_;
     }
+
+    if (p_use_high_fidelity_projection_){
+      projector_.transformLaserScanToPointCloud(p_target_frame_, *scan_to_convert, cloud2_, *tfl_, p_max_range_, laser_geometry::channel_option::Intensity);
+    }else{
+      projector_.projectLaser(*scan_to_convert, cloud2_, p_max_range_, laser_geometry::channel_option::Intensity);
+    }
+
 
     point_cloud2_pub_.publish(cloud2_);
   }
@@ -78,8 +102,12 @@ protected:
   ros::Subscriber scan_sub_;
   ros::Publisher point_cloud2_pub_;
 
+  boost::shared_ptr<tf::TransformListener> tfl_;
+
   double p_max_range_;
   double p_min_range_;
+  bool p_use_high_fidelity_projection_;
+  std::string p_target_frame_;
 
   laser_geometry::LaserProjection projector_;
 

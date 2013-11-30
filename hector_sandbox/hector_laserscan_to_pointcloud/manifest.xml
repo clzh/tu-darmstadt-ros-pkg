@@ -10,6 +10,7 @@
   <url>http://ros.org/wiki/hector_laserscan_to_pointcloud</url>
   <depend package="roscpp"/>
   <depend package="laser_geometry"/>
+  <depend package="tf"/>
 
 </package>
 
